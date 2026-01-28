@@ -2,33 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Warga extends Authenticatable
+class Warga extends Model
 {
-    use Notifiable;
+    use HasFactory;
 
-    protected $table = 'warga';
-    
     protected $fillable = [
-        'nik', 'nama_lengkap', 'email', 'password',
-        'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin',
-        'alamat', 'rt', 'rw', 'kelurahan', 'kecamatan',
-        'kota', 'provinsi', 'agama', 'status_perkawinan',
-        'pekerjaan', 'no_telepon', 'foto_ktp', 'foto_kk'
+        'user_id',
+        'nik',
+        'nama_lengkap',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'alamat',
+        'rt',
+        'rw',
+        'kelurahan',
+        'kecamatan',
+        'agama',
+        'status_perkawinan',
+        'pekerjaan',
+        'kewarganegaraan',
+        'no_kk',
+        'email',
+        'telepon',
+        'foto_ktp',
+        'foto_kk'
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $dates = ['tanggal_lahir'];
 
-    protected $casts = [
-        'tanggal_lahir' => 'date',
-    ];
-
-    public function pengajuanSurat()
+    public function user()
     {
-        return $this->hasMany(PengajuanSurat::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function surats()
+    {
+        return $this->hasMany(Surat::class);
     }
 }

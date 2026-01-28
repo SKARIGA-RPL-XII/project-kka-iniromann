@@ -34,10 +34,5 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Warga::class,
         ],
-
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => ,
-        ],
     ],
 ];
