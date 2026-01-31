@@ -3,16 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Warga extends Model
+class Warga extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    protected $table = 'warga';
 
     protected $fillable = [
-        'user_id',
         'nik',
-        'nama_lengkap',
+        'email',
+        'password',
+        'nama',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
@@ -21,23 +25,24 @@ class Warga extends Model
         'rw',
         'kelurahan',
         'kecamatan',
+        'kota',
+        'provinsi',
+        'kode_pos',
         'agama',
         'status_perkawinan',
         'pekerjaan',
-        'kewarganegaraan',
-        'no_kk',
-        'email',
-        'telepon',
-        'foto_ktp',
-        'foto_kk'
+        'kewarganegaraan'
     ];
 
-    protected $dates = ['tanggal_lahir'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'tanggal_lahir' => 'date',
+    ];
 
     public function surats()
     {

@@ -3,13 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\Auth\WargaLoginController;
 
 // Auth Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/register', [WargaLoginController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [WargaLoginController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Password Reset Routes
+Route::get('/password/reset', function () {
+    return view('auth.passwords.email');
+})->name('password.request');
+Route::post('/password/email', function () {
+    return back()->with('status', 'Link reset password telah dikirim ke email Anda.');
+})->name('password.email');
+Route::get('/password/reset/{token}', function ($token) {
+    return view('auth.passwords.reset', ['token' => $token]);
+})->name('password.reset');
+Route::post('/password/reset', function () {
+    return redirect()->route('login')->with('status', 'Password berhasil direset.');
+})->name('password.update');
 
 // Warga Routes (require authentication)
 Route::middleware(['auth', 'warga'])->group(function () {

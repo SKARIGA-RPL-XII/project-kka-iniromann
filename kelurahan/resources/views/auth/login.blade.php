@@ -124,12 +124,16 @@
 
                     <!-- Welcome Text -->
                     <div class="mb-8">
-                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-                            Selamat Datang Kembali
-                        </h2>
-                        <p class="text-gray-600">
-                            Masuk dengan NIK dan password untuk mengakses layanan
-                        </p>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                                    Selamat Datang Kembali
+                                </h2>
+                                <p class="text-gray-600">
+                                    Masuk dengan NIK dan password untuk mengakses layanan
+                                </p>
+                            
+                        </div>
                     </div>
 
                     <!-- Error Messages -->
@@ -182,6 +186,7 @@
                                        oninput="formatNIK(this)"
                                        placeholder=" "
                                        required
+                                       autocomplete="off"
                                        class="input-field w-full px-4 py-3 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 transition duration-300 text-gray-800 placeholder-transparent">
                                 
                                 <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
@@ -205,6 +210,7 @@
                                        name="password" 
                                        placeholder=" "
                                        required
+                                       autocomplete="off"
                                        class="input-field w-full px-4 py-3 pl-12 pr-12 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 transition duration-300 text-gray-800 placeholder-transparent">
                                 
                                 <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
@@ -244,10 +250,19 @@
 
                         <!-- Submit Button -->
                         <button type="submit" 
-                                class="btn-gradient w-full py-3 px-4 rounded-xl text-white font-semibold shadow-lg">
+                                class="btn-gradient w-full py-3 px-4 rounded-xl text-black font-semibold shadow-lg">
                             <i class="fas fa-sign-in-alt mr-2"></i>
-                            Masuk ke Akun
+                            Masuk
                         </button>
+
+                        <!-- Register Button for Mobile -->
+                        <div class="sm:hidden mt-4">
+                            <a href="{{ route('register') }}" 
+                               class="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition duration-300 font-semibold">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Belum punya akun? Daftar disini</span>
+                            </a>
+                        </div>
 
                         <!-- Divider -->
                         <div class="relative">
@@ -314,14 +329,47 @@
     </div>
 </div>
 
-<!-- Floating Elements -->
-<div class="fixed top-10 left-10 w-24 h-24 bg-indigo-200/20 rounded-full blur-xl z-0"></div>
-<div class="fixed bottom-10 right-10 w-32 h-32 bg-purple-200/20 rounded-full blur-xl z-0"></div>
 
-<!-- Wave Animation -->
-<div class="fixed bottom-0 left-0 right-0 overflow-hidden z-0">
-    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-</div>
+<script>
+function formatNIK(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length > 16) {
+        value = value.substring(0, 16);
+    }
+    input.value = value;
+}
+
+function togglePassword() {
+    const field = document.getElementById('password');
+    const button = field.parentElement.querySelector('.toggle-password');
+    const icon = button.querySelector('i');
+    
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        field.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}      
+        input.addEventListener('focus', updateLabel);
+        input.addEventListener('blur', updateLabel);
+        input.addEventListener('input', updateLabel);
+        
+        // Initial check
+        updateLabel();
+    });
+    
+    // Show error alerts
+    const errorAlert = document.querySelector('.error-alert');
+    if (errorAlert) {
+        setTimeout(() => {
+            errorAlert.classList.remove('opacity-0');
+            errorAlert.classList.add('opacity-100');
+        }, 100);
+    }
+});
+</script>
 @endsection

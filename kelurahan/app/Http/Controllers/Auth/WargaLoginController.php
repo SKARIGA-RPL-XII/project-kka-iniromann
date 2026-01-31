@@ -13,7 +13,7 @@ class WargaLoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.warga-login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -33,7 +33,7 @@ class WargaLoginController extends Controller
 
         Auth::guard('warga')->login($warga, $request->remember ?? false);
 
-        return redirect()->intended('/dashboard');
+        return redirect('/dashboard');
     }
 
     public function showRegistrationForm()
@@ -45,6 +45,10 @@ class WargaLoginController extends Controller
     {
         $request->validate([
             'nik' => 'required|string|unique:warga|size:16',
+            'nama' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
             'email' => 'required|string|email|unique:warga',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -58,13 +62,17 @@ class WargaLoginController extends Controller
 
         $warga = Warga::create([
             'nik' => $request->nik,
+            'nama' => $request->nama,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
         Auth::guard('warga')->login($warga);
 
-        return redirect('/profile/edit');
+        return redirect('/dashboard');
     }
 
     private function validateNIKWithExternalDB($nik)
