@@ -1,375 +1,163 @@
-@extends('layouts.auth')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - E-Kelurahan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#16a085',
+                        'primary-dark': '#138d75',
+                        'secondary': '#27ae60',
+                        'accent': '#f39c12'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-primary to-secondary min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-primary to-secondary p-6 text-center">
+            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-1">E-Kelurahan</h2>
+            <p class="text-green-100 text-sm">Sistem Pelayanan Digital</p>
+        </div>
 
-@section('title', 'Login')
-
-@section('styles')
-<style>
-    .login-illustration {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .login-illustration::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-        background-size: 30px 30px;
-        animation: float 20s linear infinite;
-    }
-    
-    @keyframes float {
-        0% { transform: translate(0, 0) rotate(0deg); }
-        100% { transform: translate(-30px, -30px) rotate(360deg); }
-    }
-    
-    .card-hover {
-        transition: all 0.3s ease;
-    }
-    
-    .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-</style>
-@endsection
-
-@section('content')
-<div class="container mx-auto px-4">
-    <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <!-- Left Column - Illustration & Info -->
-            <div class="hidden lg:block">
-                <div class="login-illustration rounded-3xl p-12 h-full min-h-[600px] flex flex-col justify-between text-white card-hover">
-                    <!-- Logo & Brand -->
-                    <div class="mb-8">
-                        <div class="flex items-center space-x-3 mb-6">
-                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center logo-glow">
-                                <i class="fas fa-city text-2xl"></i>
-                            </div>
-                            <div>
-                                <h1 class="text-3xl font-bold">E-Kelurahan</h1>
-                                <p class="text-white/80">Pelayanan Digital</p>
-                            </div>
-                        </div>
-                        <p class="text-lg mb-6">
-                            Sistem pelayanan administrasi kelurahan berbasis digital yang memudahkan warga dalam mengurus berbagai keperluan surat-menyurat.
-                        </p>
-                    </div>
-
-                    <!-- Features List -->
-                    <div class="mb-8">
-                        <h2 class="text-xl font-semibold mb-4">Fitur Unggulan</h2>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                                <span>Pengajuan Surat Online</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <span>Tracking Status Real-time</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-download"></i>
-                                </div>
-                                <span>Download Surat Digital</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <span>Keamanan Data Terjamin</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Stats -->
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                            <div class="text-2xl font-bold">5000+</div>
-                            <div class="text-sm opacity-90">Warga Terdaftar</div>
-                        </div>
-                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                            <div class="text-2xl font-bold">98%</div>
-                            <div class="text-sm opacity-90">Kepuasan Pengguna</div>
+        <!-- Form -->
+        <div class="p-6">
+            @if ($errors->any())
+                <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4 rounded">
+                    <div class="flex">
+                        <svg class="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="text-sm text-red-700">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
-            <!-- Right Column - Login Form -->
-            <div class="fade-in">
-                <div class="auth-container rounded-3xl shadow-2xl p-8 md:p-12 card-hover">
-                    <!-- Mobile Logo -->
-                    <div class="lg:hidden mb-8">
-                        <div class="flex items-center justify-center space-x-3">
-                            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-city text-indigo-600 text-2xl"></i>
-                            </div>
-                            <div class="text-center">
-                                <h1 class="text-2xl font-bold text-gray-800">E-Kelurahan</h1>
-                                <p class="text-gray-600">Masuk ke akun Anda</p>
-                            </div>
-                        </div>
+            @if (session('success'))
+                <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4 rounded">
+                    <div class="flex">
+                        <svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="text-sm text-green-700">{{ session('success') }}</p>
                     </div>
+                </div>
+            @endif
 
-                    <!-- Welcome Text -->
-                    <div class="mb-8">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-                                    Selamat Datang Kembali
-                                </h2>
-                                <p class="text-gray-600">
-                                    Masuk dengan NIK dan password untuk mengakses layanan
-                                </p>
-                            
-                        </div>
-                    </div>
-
-                    <!-- Error Messages -->
-                    @if($errors->any())
-                    <div class="mb-6 error-alert opacity-0 transition-opacity duration-500">
-                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-exclamation-circle text-red-500"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm text-red-700">
-                                        @foreach($errors->all() as $error)
-                                            {{ $error }}<br>
-                                        @endforeach
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-
-                    <!-- Success Messages -->
-                    @if(session('success'))
-                    <div class="mb-6">
-                        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm text-green-700">{{ session('success') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-
-                    <!-- Login Form -->
-                    <form id="loginForm" action="{{ route('login') }}" method="POST" class="space-y-6">
-                        @csrf
-
-                        <!-- NIK Input -->
-                        <div class="input-group">
-                            <div class="relative">
-                                <input type="text" 
-                                       id="nik" 
-                                       name="nik" 
-                                       value="{{ old('nik') }}"
-                                       oninput="formatNIK(this)"
-                                       placeholder=" "
-                                       required
-                                       autocomplete="off"
-                                       class="input-field w-full px-4 py-3 pl-12 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 transition duration-300 text-gray-800 placeholder-transparent">
-                                
-                                <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
-                                    <i class="fas fa-id-card text-gray-400"></i>
-                                </div>
-                                
-                                <label for="nik" class="floating-label absolute left-12 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-text transition-all duration-200">
-                                    Nomor Induk Kependudukan (NIK)
-                                </label>
-                            </div>
-                            <p class="mt-2 text-xs text-gray-500">
-                                Masukkan 16 digit NIK Anda
-                            </p>
-                        </div>
-
-                        <!-- Password Input -->
-                        <div class="input-group">
-                            <div class="relative">
-                                <input type="password" 
-                                       id="password" 
-                                       name="password" 
-                                       placeholder=" "
-                                       required
-                                       autocomplete="off"
-                                       class="input-field w-full px-4 py-3 pl-12 pr-12 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 transition duration-300 text-gray-800 placeholder-transparent">
-                                
-                                <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
-                                    <i class="fas fa-lock text-gray-400"></i>
-                                </div>
-                                
-                                <button type="button" 
-                                        onclick="togglePassword()"
-                                        class="toggle-password absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                
-                                <label for="password" class="floating-label absolute left-12 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-text transition-all duration-200">
-                                    Password
-                                </label>
-                            </div>
-                            <div class="flex justify-between items-center mt-2">
-                                <p class="text-xs text-gray-500">
-                                    Min. 6 karakter
-                                </p>
-                                <a href="{{ route('password.request') }}" class="text-xs text-indigo-600 hover:text-indigo-800">
-                                    Lupa Password?
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Remember Me -->
-                        <div class="flex items-center">
-                            <input type="checkbox" 
-                                   id="remember" 
-                                   name="remember"
-                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                            <label for="remember" class="ml-2 block text-sm text-gray-700">
-                                Ingat saya di perangkat ini
-                            </label>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" 
-                                class="btn-gradient w-full py-3 px-4 rounded-xl text-black font-semibold shadow-lg">
-                            <i class="fas fa-sign-in-alt mr-2"></i>
-                            Masuk
+            <form method="POST" action="{{ route('login') }}" class="space-y-4">
+                @csrf
+                <div>
+                    <label for="nik" class="block text-sm font-medium text-gray-700 mb-2">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                        Nomor Induk Kependudukan (NIK)
+                    </label>
+                    <input type="text" id="nik" name="nik" value="{{ old('nik') }}" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                           placeholder="Masukkan 16 digit NIK" maxlength="16" required>
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" 
+                               class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                               placeholder="Masukkan password" required>
+                        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <svg id="eye-open" class="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            <svg id="eye-closed" class="w-5 h-5 text-gray-400 hover:text-gray-600 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                            </svg>
                         </button>
-
-                        <!-- Register Button for Mobile -->
-                        <div class="sm:hidden mt-4">
-                            <a href="{{ route('register') }}" 
-                               class="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition duration-300 font-semibold">
-                                <i class="fas fa-user-plus"></i>
-                                <span>Belum punya akun? Daftar disini</span>
-                            </a>
-                        </div>
-
-                        <!-- Divider -->
-                        <div class="relative">
-                            <div class="absolute inset-0 flex items-center">
-                                <div class="w-full border-t border-gray-300"></div>
-                            </div>
-                            <div class="relative flex justify-center text-sm">
-                                <span class="px-2 bg-white text-gray-500">Atau</span>
-                            </div>
-                        </div>
-
-                        <!-- Alternative Login (Optional) -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" 
-                               class="flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition duration-300">
-                                <i class="fab fa-google text-red-500"></i>
-                                <span class="text-sm font-medium text-gray-700">Google</span>
-                            </a>
-                            <a href="#" 
-                               class="flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition duration-300">
-                                <i class="fas fa-id-card-alt text-blue-500"></i>
-                                <span class="text-sm font-medium text-gray-700">SSO Pemerintah</span>
-                            </a>
-                        </div>
-                    </form>
-
-                    <!-- Register Link -->
-                    <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-gray-600">
-                            Belum punya akun?
-                            <a href="{{ route('register') }}" 
-                               class="text-indigo-600 hover:text-indigo-800 font-semibold ml-1">
-                                Daftar disini
-                            </a>
-                        </p>
                     </div>
-
-                    <!-- Help & Support -->
-                    <div class="mt-6 p-4 bg-blue-50 rounded-xl">
-                        <div class="flex items-start space-x-3">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-question-circle text-blue-500 mt-1"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-semibold text-blue-800 mb-1">Butuh Bantuan?</h4>
-                                <p class="text-xs text-blue-700">
-                                    Hubungi kelurahan di (021) 12345678 atau email ke 
-                                    <a href="mailto:help@ekelurahan.id" class="underline">help@ekelurahan.id</a>
-                                </p>
-                            </div>
-                        </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" name="remember" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                        <span class="ml-2 text-sm text-gray-600">Ingat saya</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-primary text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                    </svg>
+                    Masuk ke Sistem
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
                     </div>
-
-                    <!-- Security Info -->
-                    <div class="mt-4 text-center">
-                        <p class="text-xs text-gray-500">
-                            <i class="fas fa-shield-alt mr-1"></i>
-                            Data Anda dilindungi dengan enkripsi SSL 256-bit
-                        </p>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">atau</span>
                     </div>
+                </div>
+                
+                <div class="mt-4">
+                    <a href="{{ route('register') }}" class="w-full inline-flex justify-center items-center px-4 py-2 border border-primary rounded-lg text-primary bg-green-50 hover:bg-green-100 transition duration-200">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                        </svg>
+                        Daftar Akun Baru
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-
-<script>
-function formatNIK(input) {
-    let value = input.value.replace(/\D/g, '');
-    if (value.length > 16) {
-        value = value.substring(0, 16);
-    }
-    input.value = value;
-}
-
-function togglePassword() {
-    const field = document.getElementById('password');
-    const button = field.parentElement.querySelector('.toggle-password');
-    const icon = button.querySelector('i');
-    
-    if (field.type === 'password') {
-        field.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-    } else {
-        field.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-    }
-}      
-        input.addEventListener('focus', updateLabel);
-        input.addEventListener('blur', updateLabel);
-        input.addEventListener('input', updateLabel);
         
-        // Initial check
-        updateLabel();
-    });
-    
-    // Show error alerts
-    const errorAlert = document.querySelector('.error-alert');
-    if (errorAlert) {
-        setTimeout(() => {
-            errorAlert.classList.remove('opacity-0');
-            errorAlert.classList.add('opacity-100');
-        }, 100);
-    }
-});
-</script>
-@endsection
+        <!-- Footer -->
+        <div class="bg-gray-50 px-6 py-4 text-center">
+            <p class="text-xs text-gray-500">
+                © 2024 E-Kelurahan. Sistem Pelayanan Digital Kelurahan
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeOpen = document.getElementById('eye-open');
+            const eyeClosed = document.getElementById('eye-closed');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            } else {
+                passwordInput.type = 'password';
+                eyeOpen.classList.remove('hidden');
+                eyeClosed.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

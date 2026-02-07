@@ -7,33 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class PengajuanSurat extends Model
 {
     protected $table = 'pengajuan_surat';
-    
+
     protected $fillable = [
-        'warga_id', 'jenis_surat', 'keterangan',
-        'berkas_ktp', 'berkas_kk', 'surat_pengantar_rt',
-        'status', 'alasan_ditolak', 'surat_hasil',
-        'nomor_surat', 'catatan_admin'
+        'nomor_pengajuan', 'nik', 'jenis_surat', 'keperluan',
+        'berkas_pendukung', 'status', 'catatan_admin', 'file_surat', 'tanggal_selesai'
     ];
 
     protected $casts = [
-        'tanggal_verifikasi' => 'date',
-        'tanggal_selesai' => 'date',
+        'berkas_pendukung' => 'array',
+        'tanggal_selesai' => 'datetime',
     ];
 
-    public function warga()
+    public function penduduk()
     {
-        return $this->belongsTo(Warga::class);
+        return $this->belongsTo(Penduduk::class, 'nik', 'nik');
     }
 
-    public function getStatusTextAttribute()
+    public static function generateNomorPengajuan()
     {
-        $status = [
-            'menunggu_verifikasi' => 'Menunggu Verifikasi',
-            'diproses' => 'Diproses',
-            'selesai' => 'Selesai',
-            'ditolak' => 'Ditolak'
-        ];
-        
-        return $status[$this->status] ?? $this->status;
+        $prefix = 'PGJ';
+        $date = date('Ymd');
+        $lastNumber = self::whereDate('created_at', today())->count() + 1;
+        return $prefix . $date . str_pad($lastNumber, 3, '0', STR_PAD_LEFT);
     }
 }

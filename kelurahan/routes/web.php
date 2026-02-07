@@ -1,60 +1,60 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\WargaController;
-use App\Http\Controllers\Auth\WargaLoginController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PengajuanSuratController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminPengajuanController;
 
-// Auth Routes
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', [WargaLoginController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [WargaLoginController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Password Reset Routes
-Route::get('/password/reset', function () {
-    return view('auth.passwords.email');
-})->name('password.request');
-Route::post('/password/email', function () {
-    return back()->with('status', 'Link reset password telah dikirim ke email Anda.');
-})->name('password.email');
-Route::get('/password/reset/{token}', function ($token) {
-    return view('auth.passwords.reset', ['token' => $token]);
-})->name('password.reset');
-Route::post('/password/reset', function () {
-    return redirect()->route('login')->with('status', 'Password berhasil direset.');
-})->name('password.update');
-
-// Warga Routes (require authentication)
-Route::middleware(['auth', 'warga'])->group(function () {
-    // Dashboard
-    Route::get('/dashboard', [WargaController::class, 'dashboard'])->name('warga.dashboard');
-    
-    // Profile
-    Route::get('/profile', [WargaController::class, 'showProfile'])->name('warga.profil');
-    Route::post('/profile/update', [WargaController::class, 'updateProfile'])->name('warga.profil.update');
-    
-    // Surat
-    Route::prefix('surat')->group(function () {
-        Route::get('/create', [WargaController::class, 'createSurat'])->name('warga.surat.create');
-        Route::post('/store', [WargaController::class, 'storeSurat'])->name('warga.surat.store');
-        Route::get('/riwayat', [WargaController::class, 'riwayatSurat'])->name('warga.surat.riwayat');
-        Route::get('/{id}', [WargaController::class, 'detailSurat'])->name('warga.surat.detail');
-        Route::get('/{id}/download', [WargaController::class, 'downloadSurat'])->name('warga.surat.download');
-    });
-});
-
-// Admin Routes (you can expand this section)
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-    
-    // Add more admin routes here
-});
-
-// Home
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
+});
+
+// Routes untuk Penduduk
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+Route::middleware('auth:penduduk')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::get('/profil', [ProfilController::class, 'show'])->name('profil.show');
+    Route::get('/profil/edit', [ProfilController::class, 'edit'])->name('profil.edit');
+    Route::put('/profil', [ProfilController::class, 'update'])->name('profil.update');
+    
+    Route::get('/pengajuan', [PengajuanSuratController::class, 'index'])->name('pengajuan.index');
+    Route::get('/pengajuan/create', [PengajuanSuratController::class, 'create'])->name('pengajuan.create');
+    Route::post('/pengajuan', [PengajuanSuratController::class, 'store'])->name('pengajuan.store');
+    Route::get('/pengajuan/{id}', [PengajuanSuratController::class, 'show'])->name('pengajuan.show');
+    Route::get('/pengajuan/{id}/edit', [PengajuanSuratController::class, 'edit'])->name('pengajuan.edit');
+    Route::put('/pengajuan/{id}', [PengajuanSuratController::class, 'update'])->name('pengajuan.update');
+    Route::delete('/pengajuan/{id}', [PengajuanSuratController::class, 'destroy'])->name('pengajuan.destroy');
+    Route::get('/pengajuan/{id}/download', [PengajuanSuratController::class, 'download'])->name('pengajuan.download');
+});
+
+// Routes untuk Admin
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminLoginController::class, 'login']);
+    Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+    
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        
+        Route::get('/pengajuan', [AdminPengajuanController::class, 'index'])->name('admin.pengajuan.index');
+        Route::get('/pengajuan/create', [AdminPengajuanController::class, 'create'])->name('admin.pengajuan.create');
+        Route::post('/pengajuan', [AdminPengajuanController::class, 'store'])->name('admin.pengajuan.store');
+        Route::get('/pengajuan/{id}', [AdminPengajuanController::class, 'show'])->name('admin.pengajuan.show');
+        Route::get('/pengajuan/{id}/edit', [AdminPengajuanController::class, 'edit'])->name('admin.pengajuan.edit');
+        Route::put('/pengajuan/{id}', [AdminPengajuanController::class, 'update'])->name('admin.pengajuan.update');
+        Route::delete('/pengajuan/{id}', [AdminPengajuanController::class, 'destroy'])->name('admin.pengajuan.destroy');
+        Route::put('/pengajuan/{id}/status', [AdminPengajuanController::class, 'updateStatus'])->name('admin.pengajuan.updateStatus');
+    });
 });
