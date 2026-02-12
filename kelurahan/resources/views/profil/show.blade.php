@@ -189,7 +189,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Tempat Lahir</label>
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Tanggal Lahir</label>
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +210,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Jenis Kelamin</label>
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,7 +220,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                     <label class="block text-sm font-medium text-gray-600 mb-2">RT / RW</label>
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Nomor Telepon</label>
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -254,7 +254,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+                <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Email</label>
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -277,7 +277,7 @@
                 </div>
                 <h2 class="text-xl font-bold text-gray-900">Alamat Lengkap</h2>
             </div>
-            <div class="bg-gray-50 rounded-xl p-4 border-2 border-gray-200">
+            <div class="bg-gray-50 rounded-xl p-4 border-[3px] border-gray-300">
                 <p class="text-gray-900 leading-relaxed">{{ $penduduk->alamat }}</p>
             </div>
         </div>

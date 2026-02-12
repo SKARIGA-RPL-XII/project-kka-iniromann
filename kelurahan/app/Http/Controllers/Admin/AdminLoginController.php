@@ -21,7 +21,7 @@ class AdminLoginController extends Controller
         ]);
 
         if (Auth::guard('admin')->attempt($request->only('username', 'password'), $request->filled('remember'))) {
-            return redirect()->intended('/admin/dashboard');
+            return redirect()->route('admin.dashboard')->with('success', 'Login berhasil! Selamat datang di dashboard admin.');
         }
 
         return back()->withErrors([

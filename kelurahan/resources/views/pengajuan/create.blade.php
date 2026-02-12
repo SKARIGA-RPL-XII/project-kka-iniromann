@@ -197,7 +197,7 @@
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <label class="relative cursor-pointer">
-                                    <input type="radio" name="jenis_surat" value="SKTM" class="peer sr-only" {{ old('jenis_surat') == 'SKTM' ? 'checked' : '' }} required>
+                                    <input type="radio" name="jenis_surat" value="SKTM" class="peer sr-only jenis-surat-radio" {{ old('jenis_surat') == 'SKTM' ? 'checked' : '' }} required>
                                     <div class="p-6 border-2 border-gray-200 rounded-xl hover:border-primary peer-checked:border-primary peer-checked:bg-green-50 transition-all duration-200">
                                         <div class="flex items-start">
                                             <div class="p-3 rounded-lg bg-blue-100 text-blue-600 mr-4">
@@ -214,7 +214,7 @@
                                 </label>
 
                                 <label class="relative cursor-pointer">
-                                    <input type="radio" name="jenis_surat" value="Domisili" class="peer sr-only" {{ old('jenis_surat') == 'Domisili' ? 'checked' : '' }}>
+                                    <input type="radio" name="jenis_surat" value="Domisili" class="peer sr-only jenis-surat-radio" {{ old('jenis_surat') == 'Domisili' ? 'checked' : '' }}>
                                     <div class="p-6 border-2 border-gray-200 rounded-xl hover:border-primary peer-checked:border-primary peer-checked:bg-green-50 transition-all duration-200">
                                         <div class="flex items-start">
                                             <div class="p-3 rounded-lg bg-green-100 text-green-600 mr-4">
@@ -232,7 +232,7 @@
                                 </label>
 
                                 <label class="relative cursor-pointer">
-                                    <input type="radio" name="jenis_surat" value="SKU" class="peer sr-only" {{ old('jenis_surat') == 'SKU' ? 'checked' : '' }}>
+                                    <input type="radio" name="jenis_surat" value="SKU" class="peer sr-only jenis-surat-radio" {{ old('jenis_surat') == 'SKU' ? 'checked' : '' }}>
                                     <div class="p-6 border-2 border-gray-200 rounded-xl hover:border-primary peer-checked:border-primary peer-checked:bg-green-50 transition-all duration-200">
                                         <div class="flex items-start">
                                             <div class="p-3 rounded-lg bg-yellow-100 text-yellow-600 mr-4">
@@ -249,7 +249,7 @@
                                 </label>
 
                                 <label class="relative cursor-pointer">
-                                    <input type="radio" name="jenis_surat" value="Keterangan Usaha" class="peer sr-only" {{ old('jenis_surat') == 'Keterangan Usaha' ? 'checked' : '' }}>
+                                    <input type="radio" name="jenis_surat" value="Keterangan Usaha" class="peer sr-only jenis-surat-radio" {{ old('jenis_surat') == 'Keterangan Usaha' ? 'checked' : '' }}>
                                     <div class="p-6 border-2 border-gray-200 rounded-xl hover:border-primary peer-checked:border-primary peer-checked:bg-green-50 transition-all duration-200">
                                         <div class="flex items-start">
                                             <div class="p-3 rounded-lg bg-purple-100 text-purple-600 mr-4">
@@ -264,6 +264,31 @@
                                         </div>
                                     </div>
                                 </label>
+
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="jenis_surat" value="Lainnya" class="peer sr-only jenis-surat-radio" {{ old('jenis_surat') == 'Lainnya' ? 'checked' : '' }}>
+                                    <div class="p-6 border-2 border-gray-200 rounded-xl hover:border-primary peer-checked:border-primary peer-checked:bg-green-50 transition-all duration-200">
+                                        <div class="flex items-start">
+                                            <div class="p-3 rounded-lg bg-gray-100 text-gray-600 mr-4">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900 mb-1">Lainnya</h4>
+                                                <p class="text-sm text-gray-600">Jenis surat lainnya</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Input Jenis Surat Lainnya -->
+                            <div id="jenis-surat-lainnya" class="hidden mt-4">
+                                <label for="jenis_surat_lainnya" class="block text-sm font-semibold text-gray-700 mb-2">Sebutkan Jenis Surat *</label>
+                                <input type="text" id="jenis_surat_lainnya" name="jenis_surat_lainnya" value="{{ old('jenis_surat_lainnya') }}"
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
+                                       placeholder="Contoh: Surat Keterangan Pindah, Surat Keterangan Kelahiran, dll...">
                             </div>
                         </div>
 
@@ -297,6 +322,23 @@
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-900">Upload Berkas Pendukung</h3>
                             </div>
+
+                            <div class="bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-primary rounded-lg p-6 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-2">Persyaratan Dokumen:</h4>
+                                        <ul class="text-sm text-gray-700 space-y-1">
+                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Fotocopy KTP yang masih berlaku</li>
+                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Fotocopy Kartu Keluarga (KK)</li>
+                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Surat pengantar RT/RW (jika diperlukan)</li>
+                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Dokumen pendukung lainnya</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-3">Upload Dokumen *</label>
@@ -316,23 +358,6 @@
                                         Format: JPG, PNG, PDF • Maksimal 2MB per file
                                     </p>
                                     <div id="file-list" class="mt-4 text-left"></div>
-                                </div>
-                            </div>
-
-                            <div class="bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-primary rounded-lg p-6">
-                                <div class="flex items-start">
-                                    <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-900 mb-2">Persyaratan Dokumen:</h4>
-                                        <ul class="text-sm text-gray-700 space-y-1">
-                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Fotocopy KTP yang masih berlaku</li>
-                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Fotocopy Kartu Keluarga (KK)</li>
-                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Surat pengantar RT/RW (jika diperlukan)</li>
-                                            <li class="flex items-center"><span class="text-primary mr-2">✓</span> Dokumen pendukung lainnya</li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -410,6 +435,32 @@
         // Update clock immediately and then every second
         updateClock();
         setInterval(updateClock, 1000);
+
+        // Toggle jenis surat lainnya
+        document.querySelectorAll('.jenis-surat-radio').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const lainnyaDiv = document.getElementById('jenis-surat-lainnya');
+                const lainnyaInput = document.getElementById('jenis_surat_lainnya');
+                
+                if (this.value === 'Lainnya') {
+                    lainnyaDiv.classList.remove('hidden');
+                    lainnyaInput.required = true;
+                } else {
+                    lainnyaDiv.classList.add('hidden');
+                    lainnyaInput.required = false;
+                    lainnyaInput.value = '';
+                }
+            });
+        });
+
+        // Check on page load if Lainnya is selected
+        document.addEventListener('DOMContentLoaded', function() {
+            const lainnyaRadio = document.querySelector('input[name="jenis_surat"][value="Lainnya"]');
+            if (lainnyaRadio && lainnyaRadio.checked) {
+                document.getElementById('jenis-surat-lainnya').classList.remove('hidden');
+                document.getElementById('jenis_surat_lainnya').required = true;
+            }
+        });
     </script>
 </body>
 </html>

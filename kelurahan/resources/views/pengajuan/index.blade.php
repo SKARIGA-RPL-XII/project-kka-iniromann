@@ -136,23 +136,6 @@
             </div>
         </div>
 
-        <!-- Filter Tabs -->
-        <div class="mb-6">
-            <div class="flex flex-wrap gap-2">
-                <button class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-primary text-white">
-                    Semua
-                </button>
-                <button class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-white text-gray-700 hover:bg-gray-50 border border-gray-200">
-                    Menunggu
-                </button>
-                <button class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-white text-gray-700 hover:bg-gray-50 border border-gray-200">
-                    Diproses
-                </button>
-                <button class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-white text-gray-700 hover:bg-gray-50 border border-gray-200">
-                    Selesai
-                </button>
-            </div>
-        </div>
                     @if (session('success'))
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {

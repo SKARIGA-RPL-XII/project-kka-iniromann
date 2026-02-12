@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
             'username' => 'admin',
             'nama' => 'Administrator',
             'email' => 'admin@kelurahan.com',
-            'password' => Hash::make('admin123'),
+            'password' => Hash::make('password'),
             'role' => 'admin'
         ]);
         
@@ -26,7 +26,7 @@ class AdminSeeder extends Seeder
             'username' => 'petugas',
             'nama' => 'Petugas Kelurahan',
             'email' => 'petugas@kelurahan.com',
-            'password' => Hash::make('petugas123'),
+            'password' => Hash::make('password'),
             'role' => 'petugas'
         ]);
     }

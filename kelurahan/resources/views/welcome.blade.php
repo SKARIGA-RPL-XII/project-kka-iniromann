@@ -22,32 +22,30 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navbar -->
-    <nav class="bg-gradient-to-r from-primary to-secondary shadow-lg sticky top-0 z-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <!-- Logo and Brand -->
+            <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
                             </svg>
                         </div>
-                        <div class="text-white">
-                            <span class="font-bold text-lg">E-Kelurahan</span>
+                        <div>
+                            <span class="font-bold text-xl text-gray-900">E-Kelurahan</span>
+                            <p class="text-xs text-gray-500">Layanan Digital</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Navigation -->
-                <div class="flex items-center space-x-4">
-                    <div id="current-time" class="hidden sm:block text-sm text-green-100">
+                <div class="flex items-center space-x-3">
+                    <div id="current-time" class="hidden lg:block text-sm text-gray-600 px-4 py-2 bg-gray-50 rounded-lg">
                         Loading...
                     </div>
-                    <button onclick="openLoginModal()" class="bg-white bg-opacity-20 hover:bg-opacity-30 hover:scale-105 text-white px-4 py-2 rounded-lg transition-all duration-300 active:scale-95">
+                    <button onclick="openLoginModal()" class="text-gray-700 hover:text-primary px-4 py-2 rounded-lg hover:bg-gray-50 transition-all font-medium">
                         Masuk
                     </button>
-                    <button onclick="openRegisterModal()" class="bg-white text-primary px-4 py-2 rounded-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 active:scale-95">
+                    <button onclick="openRegisterModal()" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all font-medium">
                         Daftar
                     </button>
                 </div>
@@ -56,37 +54,95 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-primary to-secondary text-white py-20 relative overflow-hidden">
-        <!-- Decorative circles -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full -ml-48 -mb-48"></div>
+    <div class="bg-gradient-to-br from-blue-50 via-white to-green-50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div class="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="animate-fade-in">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-slide-down">
-                    Selamat Datang di<br>
-                    <span class="text-yellow-300 animate-pulse">E-Kelurahan</span>
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 opacity-90 animate-slide-up">
-                    Layanan Digital Kelurahan untuk Kemudahan Administrasi Masyarakat
-                </p>
-                <p class="text-lg mb-12 opacity-80 max-w-3xl mx-auto">
-                    Ajukan surat keterangan secara online dengan mudah dan cepat. 
-                    Tidak perlu antri, cukup dari rumah Anda.
-                </p>
-                <div class="space-x-4">
-                    <button onclick="openLoginModal()" class="bg-white text-primary px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 hover:scale-105 hover:shadow-2xl transition-all duration-300 inline-block active:scale-95">
-                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
-                        </svg>
-                        Mulai Sekarang
-                    </button>
-                    <a href="#layanan" class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary hover:scale-105 hover:shadow-2xl transition-all duration-300 inline-block">
-                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        Pelajari Lebih Lanjut
-                    </a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <div class="inline-block mb-4">
+                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            🎉 Layanan Digital Terpercaya
+                        </span>
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Layanan Kelurahan
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Lebih Mudah</span>
+                    </h1>
+                    <p class="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed">
+                        Ajukan surat keterangan secara online dengan mudah dan cepat. Tidak perlu antri, cukup dari rumah Anda.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openLoginModal()" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center group">
+                            Mulai Sekarang
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </button>
+                        <a href="#layanan" class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-primary hover:text-primary transition-all inline-flex items-center justify-center">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                    <div class="mt-12 flex items-center gap-8">
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">10+</p>
+                            <p class="text-sm text-gray-600">Pengguna Aktif</p>
+                        </div>
+                        <div class="h-12 w-px bg-gray-300"></div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">5+</p>
+                            <p class="text-sm text-gray-600">Surat Terbit</p>
+                        </div>
+                        <div class="h-12 w-px bg-gray-300"></div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">24/7</p>
+                            <p class="text-sm text-gray-600">Layanan Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl transform rotate-6"></div>
+                        <div class="relative bg-white p-8 rounded-3xl shadow-2xl">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-4 bg-green-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Proses Cepat</p>
+                                        <p class="text-sm text-gray-600">Hanya 1-2 hari kerja</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Aman & Terpercaya</p>
+                                        <p class="text-sm text-gray-600">Data terenkripsi</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 p-4 bg-yellow-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Akses 24/7</p>
+                                        <p class="text-sm text-gray-600">Kapan saja, dimana saja</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,35 +162,47 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-blue-200 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-blue-200 group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/10 group-hover:to-blue-600/10 transition-all duration-500"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Surat Keterangan Tidak Mampu</h3>
+                        <p class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Untuk keperluan bantuan sosial, beasiswa, dan kebutuhan lainnya.</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">Surat Keterangan Tidak Mampu</h3>
-                    <p class="text-gray-600">Untuk keperluan bantuan sosial, beasiswa, dan kebutuhan lainnya.</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-green-200 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
+                <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-green-200 group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-400/0 to-green-600/0 group-hover:from-green-400/10 group-hover:to-green-600/10 transition-all duration-500"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Surat Keterangan Domisili</h3>
+                        <p class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Untuk keperluan administrasi tempat tinggal dan domisili.</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-green-600 transition-colors">Surat Keterangan Domisili</h3>
-                    <p class="text-gray-600">Untuk keperluan administrasi tempat tinggal dan domisili.</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-yellow-50 to-white rounded-2xl p-8 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-yellow-200 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
+                <div class="bg-gradient-to-br from-yellow-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-yellow-200 group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/0 to-yellow-600/0 group-hover:from-yellow-400/10 group-hover:to-yellow-600/10 transition-all duration-500"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-yellow-600 transition-colors duration-300">Surat Keterangan Usaha</h3>
+                        <p class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Untuk keperluan perizinan usaha dan administrasi bisnis.</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-yellow-600 transition-colors">Surat Keterangan Usaha</h3>
-                    <p class="text-gray-600">Untuk keperluan perizinan usaha dan administrasi bisnis.</p>
                 </div>
             </div>
         </div>
@@ -272,38 +340,76 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Login Berhasil!</h3>
-            <p class="text-gray-600 mb-4">Selamat datang di E-Kelurahan</p>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2" id="successModalTitle">Login Berhasil!</h3>
+            <p class="text-gray-600 mb-4" id="successModalMessage">Selamat datang di E-Kelurahan</p>
             <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mx-auto"></div>
         </div>
     </div>
 
     <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full">
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-primary to-secondary p-6 rounded-t-2xl">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3">
-                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+        <div class="bg-white rounded-2xl max-w-4xl w-full flex overflow-hidden">
+            <!-- Left Side - Branding -->
+            <div class="hidden md:flex md:w-1/2 bg-gradient-to-br from-primary to-secondary p-8 flex-col justify-center items-center text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-white opacity-10 rounded-full -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-60 h-60 bg-white opacity-10 rounded-full -ml-30 -mb-30"></div>
+                
+                <div class="relative z-10 text-center">
+                    <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
+                        <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">E-Kelurahan</h3>
+                    <p class="text-lg opacity-90 mb-6">Layanan Digital untuk Kemudahan Administrasi</p>
+                    <div class="space-y-3 text-left">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
+                            <span>Proses cepat & mudah</span>
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Masuk</h2>
-                            <p class="text-green-100 text-sm">Selamat datang kembali</p>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Tanpa perlu antri</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Akses 24/7 dari rumah</span>
                         </div>
                     </div>
-                    <button onclick="closeLoginModal()" class="text-white hover:text-gray-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
                 </div>
             </div>
             
-            <div class="p-6">
+            <!-- Right Side - Form -->
+            <div class="w-full md:w-1/2">
+                <!-- Header -->
+                <div class="bg-gradient-to-r from-primary to-secondary p-6">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-bold text-white">Masuk</h2>
+                                <p class="text-green-100 text-sm">Selamat datang kembali</p>
+                            </div>
+                        </div>
+                        <button onclick="closeLoginModal()" class="text-white hover:text-gray-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
                 
                 <form method="POST" action="{{ route('login') }}" id="loginForm">
                     @csrf
@@ -371,255 +477,98 @@
             </div>
         </div>
     </div>
+</div>
 
     <!-- Register Modal -->
     <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-screen overflow-y-auto">
+        <div class="bg-white rounded-xl max-w-md w-full shadow-2xl">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-primary to-secondary p-6">
+            <div class="bg-gradient-to-r from-primary to-secondary p-4">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3">
-                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-2">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
                             </svg>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-bold text-white">Daftar Akun</h2>
-                            <p class="text-green-100 text-sm">Lengkapi data diri Anda</p>
+                            <h2 class="text-lg font-bold text-white">Daftar Akun</h2>
+                            <p class="text-green-100 text-xs">Buat akun baru</p>
                         </div>
                     </div>
                     <button onclick="closeRegisterModal()" class="text-white hover:text-gray-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
             </div>
             
-            <div class="p-6">
-                
+            <div class="p-5">
                 <form method="POST" action="{{ route('register') }}" id="registerForm">
                     @csrf
                     
                     <!-- Error Alert -->
-                    <div id="registerError" class="hidden mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    <div id="registerError" class="hidden mb-3 bg-red-50 border-l-4 border-red-400 p-3 rounded">
                         <div class="flex">
-                            <svg class="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="w-4 h-4 text-red-400 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
                             </svg>
-                            <div id="registerErrorMessages" class="text-sm"></div>
+                            <div id="registerErrorMessages" class="text-xs text-red-700"></div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    
+                    <div class="space-y-3">
                         <div>
-                            <label for="register_nama" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                            <label for="register_nama" class="block text-xs font-medium text-gray-700 mb-1">Nama Lengkap</label>
                             <input type="text" id="register_nama" name="nama" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                   class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
                         </div>
                         
                         <div>
-                            <label for="register_nik" class="block text-sm font-medium text-gray-700 mb-2">NIK</label>
-                            <input type="text" id="register_nik" name="nik" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="register_tempat_lahir" class="block text-sm font-medium text-gray-700 mb-2">Tempat Lahir</label>
-                            <input type="text" id="register_tempat_lahir" name="tempat_lahir" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <label for="register_nik" class="block text-xs font-medium text-gray-700 mb-1">NIK</label>
+                            <input type="text" id="register_nik" name="nik" required maxlength="16"
+                                   class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                                   placeholder="16 digit">
                         </div>
                         
                         <div>
-                            <label for="register_tanggal_lahir" class="block text-sm font-medium text-gray-700 mb-2">Tanggal Lahir</label>
-                            <div class="grid grid-cols-3 gap-2">
-                                <select id="register_tanggal" name="tanggal" required class="px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                                    <option value="">Tgl</option>
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
-                                </select>
-                                <select id="register_bulan" name="bulan" required class="px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                                    <option value="">Bulan</option>
-                                    <option value="01">Januari</option>
-                                    <option value="02">Februari</option>
-                                    <option value="03">Maret</option>
-                                    <option value="04">April</option>
-                                    <option value="05">Mei</option>
-                                    <option value="06">Juni</option>
-                                    <option value="07">Juli</option>
-                                    <option value="08">Agustus</option>
-                                    <option value="09">September</option>
-                                    <option value="10">Oktober</option>
-                                    <option value="11">November</option>
-                                    <option value="12">Desember</option>
-                                </select>
-                                <select id="register_tahun" name="tahun" required class="px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                                    <option value="">Tahun</option>
-                                </select>
-                            </div>
-                            <input type="hidden" id="register_tanggal_lahir" name="tanggal_lahir">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="register_jenis_kelamin" class="block text-sm font-medium text-gray-700 mb-2">Jenis Kelamin</label>
-                            <select id="register_jenis_kelamin" name="jenis_kelamin" required 
-                                    class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                                <option value="">Pilih Jenis Kelamin</option>
-                                <option value="L">Laki-laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="register_no_kk" class="block text-sm font-medium text-gray-700 mb-2">No. KK</label>
-                            <input type="text" id="register_no_kk" name="no_kk" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="register_alamat" class="block text-sm font-medium text-gray-700 mb-2">Alamat</label>
-                        <textarea id="register_alamat" name="alamat" rows="3" required 
-                                  class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="register_rt" class="block text-sm font-medium text-gray-700 mb-2">RT</label>
-                            <input type="text" id="register_rt" name="rt" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                        </div>
-                        
-                        <div>
-                            <label for="register_rw" class="block text-sm font-medium text-gray-700 mb-2">RW</label>
-                            <input type="text" id="register_rw" name="rw" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="register_kecamatan" class="block text-sm font-medium text-gray-700 mb-2">Kecamatan</label>
-                            <input type="text" id="register_kecamatan" name="kecamatan" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                        </div>
-                        
-                        <div>
-                            <label for="register_kabupaten" class="block text-sm font-medium text-gray-700 mb-2">Kabupaten/Kota</label>
-                            <input type="text" id="register_kabupaten" name="kabupaten" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="register_provinsi" class="block text-sm font-medium text-gray-700 mb-2">Provinsi</label>
-                        <input type="text" id="register_provinsi" name="provinsi" required 
-                               class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="register_agama" class="block text-sm font-medium text-gray-700 mb-2">Agama</label>
-                            <select id="register_agama" name="agama" required 
-                                    class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                                <option value="">Pilih Agama</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Kristen">Kristen</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Buddha">Buddha</option>
-                                <option value="Konghucu">Konghucu</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="register_status_perkawinan" class="block text-sm font-medium text-gray-700 mb-2">Status Perkawinan</label>
-                            <select id="register_status_perkawinan" name="status_perkawinan" required 
-                                    class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                                <option value="">Pilih Status</option>
-                                <option value="Belum Kawin">Belum Kawin</option>
-                                <option value="Kawin">Kawin</option>
-                                <option value="Cerai Hidup">Cerai Hidup</option>
-                                <option value="Cerai Mati">Cerai Mati</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="register_pekerjaan" class="block text-sm font-medium text-gray-700 mb-2">Pekerjaan</label>
-                        <input type="text" id="register_pekerjaan" name="pekerjaan" required 
-                               class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="register_telepon" class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
-                            <input type="text" id="register_telepon" name="telepon" 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
-                                   placeholder="08123456789">
-                        </div>
-                        
-                        <div>
-                            <label for="register_email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <label for="register_email" class="block text-xs font-medium text-gray-700 mb-1">Email <span class="text-gray-400">(Opsional)</span></label>
                             <input type="email" id="register_email" name="email" 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                   class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                                    placeholder="contoh@email.com">
                         </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label for="register_password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <div class="relative">
-                            <input type="password" id="register_password" name="password" required 
-                                   class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-primary focus:border-primary pr-10">
-                            <button type="button" onclick="togglePassword('register_password')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                </svg>
-                            </button>
+                        
+                        <div>
+                            <label for="register_password" class="block text-xs font-medium text-gray-700 mb-1">Password</label>
+                            <div class="relative">
+                                <input type="password" id="register_password" name="password" required 
+                                       class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary pr-10">
+                                <button type="button" onclick="togglePassword('register_password')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
-                    <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition-colors mb-4">
-                        Daftar
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-3 my-3 rounded">
+                        <div class="flex">
+                            <svg class="w-4 h-4 text-blue-400 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-xs text-blue-700">Data lengkap dapat dilengkapi di Edit Profil setelah login.</p>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-2.5 px-4 rounded-lg font-semibold hover:shadow-lg transition-all text-sm">
+                        Daftar Sekarang
                     </button>
                     
-                    <div class="text-center">
-                        <p class="text-sm text-gray-600">
+                    <div class="text-center mt-3">
+                        <p class="text-xs text-gray-600">
                             Sudah punya akun? 
                             <button type="button" onclick="switchToLogin()" class="text-primary hover:text-primary-dark font-medium">
                                 Masuk di sini
@@ -672,9 +621,14 @@
             document.getElementById('loginError').classList.add('hidden');
         }
         
-        function showSuccessModal() {
+        function showSuccessModal(title = 'Login Berhasil!', message = 'Selamat datang di E-Kelurahan') {
             const modal = document.getElementById('successModal');
             const content = document.getElementById('successModalContent');
+            const titleElement = document.getElementById('successModalTitle');
+            const messageElement = document.getElementById('successModalMessage');
+            
+            titleElement.textContent = title;
+            messageElement.textContent = message;
             
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -867,7 +821,7 @@
             .then(data => {
                 if (data.success) {
                     closeRegisterModal();
-                    showSuccessModal();
+                    showSuccessModal('Berhasil registrasi', 'Silakan login dengan akun Anda');
                     
                     // Show success message and switch to login
                     setTimeout(() => {
@@ -891,30 +845,7 @@
             });
         });
 
-        // Populate year dropdown
-        const yearSelect = document.getElementById('register_tahun');
-        const currentYear = new Date().getFullYear();
-        for (let year = currentYear; year >= currentYear - 100; year--) {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearSelect.appendChild(option);
-        }
 
-        // Combine date fields into tanggal_lahir
-        function updateTanggalLahir() {
-            const tanggal = document.getElementById('register_tanggal').value;
-            const bulan = document.getElementById('register_bulan').value;
-            const tahun = document.getElementById('register_tahun').value;
-            
-            if (tanggal && bulan && tahun) {
-                document.getElementById('register_tanggal_lahir').value = `${tahun}-${bulan}-${tanggal}`;
-            }
-        }
-
-        document.getElementById('register_tanggal').addEventListener('change', updateTanggalLahir);
-        document.getElementById('register_bulan').addEventListener('change', updateTanggalLahir);
-        document.getElementById('register_tahun').addEventListener('change', updateTanggalLahir);
 
         // Real-time clock functionality
         function updateClock() {

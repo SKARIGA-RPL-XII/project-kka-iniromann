@@ -150,14 +150,14 @@
         @endif
 
         <!-- Info Alert -->
-        <div class="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg">
+        <div class="mb-6 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg">
             <div class="flex">
-                <svg class="w-5 h-5 text-yellow-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                <svg class="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                 </svg>
                 <div>
-                    <p class="text-sm font-medium text-yellow-800">Informasi Penting</p>
-                    <p class="text-sm text-yellow-700 mt-1">Anda hanya dapat mengubah nomor telepon, email, dan password. Data lainnya tidak dapat diubah karena terkait dengan database kependudukan.</p>
+                    <p class="text-sm font-medium text-blue-800">Lengkapi Profil Anda</p>
+                    <p class="text-sm text-blue-700 mt-1">Silakan lengkapi data profil Anda untuk memudahkan proses pengajuan surat.</p>
                 </div>
             </div>
         </div>
@@ -165,6 +165,193 @@
         <form method="POST" action="{{ route('profil.update') }}">
             @csrf
             @method('PUT')
+
+            <!-- Personal Information Card -->
+            <div class="bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-6 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Data Pribadi</h2>
+                        <p class="text-sm text-gray-600">Informasi identitas diri</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="tempat_lahir" class="block text-sm font-medium text-gray-700 mb-2">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir', $penduduk->tempat_lahir) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->tempat_lahir ?: 'Contoh: Malang' }}">
+                    </div>
+
+                    <div>
+                        <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700 mb-2">Tanggal Lahir</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <select id="tgl_lahir" name="tgl_lahir" class="px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                                <option value="">Tgl</option>
+                                @for($i = 1; $i <= 31; $i++)
+                                    <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ old('tgl_lahir', $penduduk->tanggal_lahir ? date('d', strtotime($penduduk->tanggal_lahir)) : '') == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                            <select id="bln_lahir" name="bln_lahir" class="px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                                <option value="">Bulan</option>
+                                @php
+                                    $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                @endphp
+                                @foreach($bulan as $key => $value)
+                                    <option value="{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}" {{ old('bln_lahir', $penduduk->tanggal_lahir ? date('m', strtotime($penduduk->tanggal_lahir)) : '') == str_pad($key + 1, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>{{ $value }}</option>
+                                @endforeach
+                            </select>
+                            <select id="thn_lahir" name="thn_lahir" class="px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                                <option value="">Tahun</option>
+                                @for($i = date('Y'); $i >= date('Y') - 100; $i--)
+                                    <option value="{{ $i }}" {{ old('thn_lahir', $penduduk->tanggal_lahir ? date('Y', strtotime($penduduk->tanggal_lahir)) : '') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <input type="hidden" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir', $penduduk->tanggal_lahir) }}">
+                    </div>
+
+                    <div>
+                        <label for="jenis_kelamin" class="block text-sm font-medium text-gray-700 mb-2">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" name="jenis_kelamin" 
+                                class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                            <option value="">{{ $penduduk->jenis_kelamin ? ($penduduk->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan') : 'Pilih Jenis Kelamin' }}</option>
+                            <option value="L" {{ old('jenis_kelamin', $penduduk->jenis_kelamin) == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="P" {{ old('jenis_kelamin', $penduduk->jenis_kelamin) == 'P' ? 'selected' : '' }}>Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="no_kk" class="block text-sm font-medium text-gray-700 mb-2">No. KK <span class="text-xs text-gray-500">(16 digit)</span></label>
+                        <input type="text" id="no_kk" name="no_kk" value="{{ old('no_kk', $penduduk->no_kk != '0000000000000000' && $penduduk->no_kk != '000' ? $penduduk->no_kk : '') }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="Contoh: 3573010101010001" maxlength="16" pattern="[0-9]{16}">
+                        <p class="text-xs text-gray-500 mt-1">Masukkan 16 digit angka</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Information Card -->
+            <div class="bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-6 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Alamat</h2>
+                        <p class="text-sm text-gray-600">Informasi tempat tinggal</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="alamat" class="block text-sm font-medium text-gray-700 mb-2">Alamat Lengkap</label>
+                    <textarea id="alamat" name="alamat" rows="3" 
+                              class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                              placeholder="{{ $penduduk->alamat ?: 'Contoh: Jl. Soekarno Hatta No. 123' }}">{{ old('alamat', $penduduk->alamat) }}</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="rt" class="block text-sm font-medium text-gray-700 mb-2">RT</label>
+                        <input type="text" id="rt" name="rt" value="{{ old('rt', $penduduk->rt) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->rt ?: 'Contoh: 001' }}">
+                    </div>
+
+                    <div>
+                        <label for="rw" class="block text-sm font-medium text-gray-700 mb-2">RW</label>
+                        <input type="text" id="rw" name="rw" value="{{ old('rw', $penduduk->rw) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->rw ?: 'Contoh: 002' }}">
+                    </div>
+
+                    <div>
+                        <label for="kecamatan" class="block text-sm font-medium text-gray-700 mb-2">Kecamatan</label>
+                        <input type="text" id="kecamatan" name="kecamatan" value="{{ old('kecamatan', $penduduk->kecamatan) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->kecamatan ?: 'Contoh: Lowokwaru' }}">
+                    </div>
+
+                    <div>
+                        <label for="kelurahan" class="block text-sm font-medium text-gray-700 mb-2">Kelurahan</label>
+                        <input type="text" id="kelurahan" name="kelurahan" value="{{ old('kelurahan', $penduduk->kelurahan) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->kelurahan ?: 'Contoh: Jatimulyo' }}">
+                    </div>
+
+                    <div>
+                        <label for="kabupaten" class="block text-sm font-medium text-gray-700 mb-2">Kabupaten/Kota</label>
+                        <input type="text" id="kabupaten" name="kabupaten" value="{{ old('kabupaten', $penduduk->kabupaten) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->kabupaten ?: 'Contoh: Kota Malang' }}">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="provinsi" class="block text-sm font-medium text-gray-700 mb-2">Provinsi</label>
+                        <input type="text" id="provinsi" name="provinsi" value="{{ old('provinsi', $penduduk->provinsi) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->provinsi ?: 'Contoh: Jawa Timur' }}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information Card -->
+            <div class="bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-6 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Informasi Tambahan</h2>
+                        <p class="text-sm text-gray-600">Data pelengkap profil</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="agama" class="block text-sm font-medium text-gray-700 mb-2">Agama</label>
+                        <select id="agama" name="agama" 
+                                class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                            <option value="">{{ $penduduk->agama ?: 'Pilih Agama' }}</option>
+                            <option value="Islam" {{ old('agama', $penduduk->agama) == 'Islam' ? 'selected' : '' }}>Islam</option>
+                            <option value="Kristen" {{ old('agama', $penduduk->agama) == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                            <option value="Katolik" {{ old('agama', $penduduk->agama) == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                            <option value="Hindu" {{ old('agama', $penduduk->agama) == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                            <option value="Buddha" {{ old('agama', $penduduk->agama) == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                            <option value="Konghucu" {{ old('agama', $penduduk->agama) == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="status_perkawinan" class="block text-sm font-medium text-gray-700 mb-2">Status Perkawinan</label>
+                        <select id="status_perkawinan" name="status_perkawinan" 
+                                class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                            <option value="">{{ $penduduk->status_perkawinan ?: 'Pilih Status' }}</option>
+                            <option value="Belum Kawin" {{ old('status_perkawinan', $penduduk->status_perkawinan) == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
+                            <option value="Kawin" {{ old('status_perkawinan', $penduduk->status_perkawinan) == 'Kawin' ? 'selected' : '' }}>Kawin</option>
+                            <option value="Cerai Hidup" {{ old('status_perkawinan', $penduduk->status_perkawinan) == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
+                            <option value="Cerai Mati" {{ old('status_perkawinan', $penduduk->status_perkawinan) == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="pekerjaan" class="block text-sm font-medium text-gray-700 mb-2">Pekerjaan</label>
+                        <input type="text" id="pekerjaan" name="pekerjaan" value="{{ old('pekerjaan', $penduduk->pekerjaan) }}" 
+                               class="w-full px-3 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                               placeholder="{{ $penduduk->pekerjaan ?: 'Contoh: Pegawai Swasta' }}">
+                    </div>
+                </div>
+            </div>
 
             <!-- Contact Information Card -->
             <div class="bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-6 mb-6">
@@ -190,7 +377,7 @@
                                 </svg>
                             </div>
                             <input type="text" id="telepon" name="telepon" value="{{ old('telepon', $penduduk->telepon) }}" 
-                                   class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
+                                   class="w-full pl-10 pr-4 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
                                    placeholder="08123456789">
                         </div>
                     </div>
@@ -204,7 +391,7 @@
                                 </svg>
                             </div>
                             <input type="email" id="email" name="email" value="{{ old('email', $penduduk->email) }}" 
-                                   class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
+                                   class="w-full pl-10 pr-4 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
                                    placeholder="contoh@email.com">
                         </div>
                     </div>
@@ -235,7 +422,7 @@
                                 </svg>
                             </div>
                             <input type="password" id="password" name="password" 
-                                   class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
+                                   class="w-full pl-10 pr-4 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
                                    placeholder="Minimal 6 karakter">
                         </div>
                     </div>
@@ -249,7 +436,7 @@
                                 </svg>
                             </div>
                             <input type="password" id="password_confirmation" name="password_confirmation" 
-                                   class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
+                                   class="w-full pl-10 pr-4 py-3 border-[3px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all" 
                                    placeholder="Ulangi password baru">
                         </div>
                     </div>
@@ -298,6 +485,26 @@
         // Update clock immediately and then every second
         updateClock();
         setInterval(updateClock, 1000);
+
+        // Combine date fields into tanggal_lahir
+        function updateTanggalLahir() {
+            const tgl = document.getElementById('tgl_lahir').value;
+            const bln = document.getElementById('bln_lahir').value;
+            const thn = document.getElementById('thn_lahir').value;
+            
+            if (tgl && bln && thn) {
+                document.getElementById('tanggal_lahir').value = `${thn}-${bln}-${tgl}`;
+            }
+        }
+
+        document.getElementById('tgl_lahir').addEventListener('change', updateTanggalLahir);
+        document.getElementById('bln_lahir').addEventListener('change', updateTanggalLahir);
+        document.getElementById('thn_lahir').addEventListener('change', updateTanggalLahir);
+
+        // Format No. KK - only allow numbers and max 16 digits
+        document.getElementById('no_kk').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);
+        });
     </script>
 </body>
 </html>
