@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Kelurahan</title>
+    <title>E-Kelurahan - Sistem Informasi Kelurahan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#16a085',
-                        'primary-dark': '#138d75',
-                        'secondary': '#27ae60',
-                        'accent': '#f39c12'
+                        'primary': '#059669',
+                        'primary-dark': '#047857',
+                        'secondary': '#10b981',
+                        'accent': '#f59e0b'
                     }
                 }
             }
@@ -21,32 +21,37 @@
     </script>
 </head>
 <body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <!-- Top Bar -->
+    <div class="bg-primary text-white py-2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="font-bold text-xl text-gray-900">E-Kelurahan</span>
-                            <p class="text-xs text-gray-500">Layanan Digital</p>
-                        </div>
+            <div class="flex justify-between items-center text-sm">
+                <div class="flex items-center space-x-4">
+                    <span>📧 kelurahan@kota.go.id</span>
+                    <span>📞 (0341) 551818</span>
+                </div>
+                <div id="current-time" class="text-sm">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Coat_of_arms_of_Malang%2C_East_Java.svg/150px-Coat_of_arms_of_Malang%2C_East_Java.svg.png" 
+                         alt="Logo" class="h-14 w-14">
+                    <div>
+                        <h1 class="text-xl font-bold text-primary">E-KELURAHAN</h1>
+                        <p class="text-xs text-gray-600">Kota</p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <div id="current-time" class="hidden lg:block text-sm text-gray-600 px-4 py-2 bg-gray-50 rounded-lg">
-                        Loading...
-                    </div>
-                    <button onclick="openLoginModal()" class="text-gray-700 hover:text-primary px-4 py-2 rounded-lg hover:bg-gray-50 transition-all font-medium">
-                        Masuk
-                    </button>
-                    <button onclick="openRegisterModal()" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all font-medium">
-                        Daftar
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#beranda" class="text-gray-700 hover:text-primary font-medium">Beranda</a>
+                    <a href="#layanan" class="text-gray-700 hover:text-primary font-medium">Layanan</a>
+                    <a href="#tentang" class="text-gray-700 hover:text-primary font-medium">Tentang</a>
+                    <button onclick="openLoginModal()" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-md font-medium transition">
+                        Login
                     </button>
                 </div>
             </div>
@@ -54,92 +59,270 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="bg-gradient-to-br from-blue-50 via-white to-green-50 relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div class="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-left">
-                    <div class="inline-block mb-4">
-                        <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold">
-                            🎉 Layanan Digital Terpercaya
-                        </span>
+    <div id="beranda" class="relative bg-gradient-to-br from-primary via-emerald-500 to-secondary text-white py-24">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <div class="inline-block mb-6 bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full">
+                    <span class="text-sm font-semibold">✨ Layanan Digital Terpadu</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Selamat Datang di<br><span class="text-yellow-300">E-Kelurahan</span></h1>
+                <p class="text-xl md:text-2xl mb-4 text-emerald-50">Sistem Pelayanan Administrasi Online</p>
+                <p class="text-lg mb-10 max-w-3xl mx-auto text-emerald-100">Urus surat keterangan dengan mudah, cepat, dan tanpa antri. Cukup dari rumah, kapan saja!</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="openLoginModal()" class="bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-emerald-50 hover:scale-105 transition-all shadow-xl hover:shadow-2xl">
+                        Mulai Sekarang
+                    </button>
+                    <button onclick="openRegisterModal()" class="border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-primary transition-all">
+                        Daftar Gratis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Super Cepat</h3>
+                <p class="text-gray-600 leading-relaxed">Proses hanya 1-2 hari kerja. Tidak perlu menunggu lama!</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">100% Aman</h3>
+                <p class="text-gray-600 leading-relaxed">Data Anda terlindungi dengan enkripsi tingkat tinggi</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">24/7 Online</h3>
+                <p class="text-gray-600 leading-relaxed">Akses kapan saja, dimana saja, tanpa batas waktu</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="layanan" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">📝 Layanan Kami</span>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Jenis Surat Keterangan</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Pilih jenis surat yang Anda butuhkan</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
                     </div>
-                    <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                        Layanan Kelurahan
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Lebih Mudah</span>
-                    </h1>
-                    <p class="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed">
-                        Ajukan surat keterangan secara online dengan mudah dan cepat. Tidak perlu antri, cukup dari rumah Anda.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="openLoginModal()" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center group">
-                            Mulai Sekarang
-                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                        </button>
-                        <a href="#layanan" class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-primary hover:text-primary transition-all inline-flex items-center justify-center">
-                            Pelajari Lebih Lanjut
-                        </a>
-                    </div>
-                    <div class="mt-12 flex items-center gap-8">
-                        <div>
-                            <p class="text-3xl font-bold text-gray-900">10+</p>
-                            <p class="text-sm text-gray-600">Pengguna Aktif</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">Surat Keterangan Tidak Mampu</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Untuk bantuan sosial, beasiswa, dan keperluan lainnya</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <svg class="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Fotocopy KTP & KK
                         </div>
-                        <div class="h-12 w-px bg-gray-300"></div>
-                        <div>
-                            <p class="text-3xl font-bold text-gray-900">5+</p>
-                            <p class="text-sm text-gray-600">Surat Terbit</p>
-                        </div>
-                        <div class="h-12 w-px bg-gray-300"></div>
-                        <div>
-                            <p class="text-3xl font-bold text-gray-900">24/7</p>
-                            <p class="text-sm text-gray-600">Layanan Online</p>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <svg class="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Surat Pengantar RT/RW
                         </div>
                     </div>
                 </div>
-                <div class="hidden lg:block">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl transform rotate-6"></div>
-                        <div class="relative bg-white p-8 rounded-3xl shadow-2xl">
-                            <div class="space-y-4">
-                                <div class="flex items-center gap-4 p-4 bg-green-50 rounded-xl">
-                                    <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900">Proses Cepat</p>
-                                        <p class="text-sm text-gray-600">Hanya 1-2 hari kerja</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-xl">
-                                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900">Aman & Terpercaya</p>
-                                        <p class="text-sm text-gray-600">Data terenkripsi</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4 p-4 bg-yellow-50 rounded-xl">
-                                    <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900">Akses 24/7</p>
-                                        <p class="text-sm text-gray-600">Kapan saja, dimana saja</p>
-                                    </div>
-                                </div>
+
+                <div class="group bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">Surat Keterangan Domisili</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Untuk administrasi tempat tinggal dan domisili</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <svg class="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Fotocopy KTP & KK
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <svg class="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Surat Pengantar RT/RW
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">Surat Keterangan Usaha</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Untuk perizinan usaha dan administrasi bisnis</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <svg class="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Fotocopy KTP & KK
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <svg class="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Foto tempat usaha
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Procedure Section -->
+    <div class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">✨ Cara Kerja</span>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Mudah dalam 4 Langkah</h2>
+                <p class="text-xl text-gray-600">Proses yang simpel dan transparan</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-xl group-hover:scale-110 transition-transform">
+                            1
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Daftar/Login</h3>
+                    <p class="text-gray-600 leading-relaxed">Buat akun atau masuk dengan NIK Anda</p>
+                </div>
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-xl group-hover:scale-110 transition-transform">
+                            2
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Isi Formulir</h3>
+                    <p class="text-gray-600 leading-relaxed">Lengkapi data dan upload dokumen</p>
+                </div>
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-xl group-hover:scale-110 transition-transform">
+                            3
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Verifikasi</h3>
+                    <p class="text-gray-600 leading-relaxed">Petugas memverifikasi data Anda</p>
+                </div>
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-xl group-hover:scale-110 transition-transform">
+                            4
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-400 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Selesai!</h3>
+                    <p class="text-gray-600 leading-relaxed">Download atau ambil surat Anda</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="tentang" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Tentang E-Kelurahan</h2>
+                    <p class="text-gray-600 mb-4">
+                        E-Kelurahan adalah sistem pelayanan administrasi kelurahan berbasis online yang dikembangkan untuk memudahkan masyarakat dalam mengurus berbagai keperluan surat keterangan.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Dengan sistem ini, masyarakat tidak perlu lagi datang ke kantor kelurahan untuk mengajukan surat. Cukup akses melalui website, isi formulir, dan tunggu surat Anda diproses.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Hemat waktu dan biaya</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Proses transparan dan dapat dilacak</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Pelayanan 24 jam non-stop</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Informasi Kontak</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-gray-900">Alamat</p>
+                                <p class="text-gray-600 text-sm">Jl. MT Haryono No. 143, Dinoyo<br>Kec. Lowokwaru, Kota Malang<br>Jawa Timur 65144</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-gray-900">Telepon</p>
+                                <p class="text-gray-600 text-sm">(0341) 551818</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-gray-900">Email</p>
+                                <p class="text-gray-600 text-sm">kelurahan@malangkota.go.id</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-gray-900">Jam Pelayanan</p>
+                                <p class="text-gray-600 text-sm">Senin - Jumat: 08.00 - 15.00 WIB<br>Sabtu - Minggu: Tutup</p>
                             </div>
                         </div>
                     </div>
@@ -148,186 +331,36 @@
         </div>
     </div>
 
-    <!-- Services Section -->
-    <div id="layanan" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-primary font-semibold text-sm uppercase tracking-wide">Layanan Kami</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 mt-2">
-                    Berbagai Jenis Surat Keterangan
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Ajukan surat keterangan yang Anda butuhkan secara online dengan mudah
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-blue-200 group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/10 group-hover:to-blue-600/10 transition-all duration-500"></div>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Surat Keterangan Tidak Mampu</h3>
-                        <p class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Untuk keperluan bantuan sosial, beasiswa, dan kebutuhan lainnya.</p>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-green-200 group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-400/0 to-green-600/0 group-hover:from-green-400/10 group-hover:to-green-600/10 transition-all duration-500"></div>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Surat Keterangan Domisili</h3>
-                        <p class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Untuk keperluan administrasi tempat tinggal dan domisili.</p>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-yellow-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-yellow-200 group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/0 to-yellow-600/0 group-hover:from-yellow-400/10 group-hover:to-yellow-600/10 transition-all duration-500"></div>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-yellow-600 transition-colors duration-300">Surat Keterangan Usaha</h3>
-                        <p class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Untuk keperluan perizinan usaha dan administrasi bisnis.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- How It Works Section -->
-    <div class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-primary font-semibold text-sm uppercase tracking-wide">Cara Menggunakan</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 mt-2">
-                    Mudah & Cepat
-                </h2>
-                <p class="text-xl text-gray-600">
-                    Hanya 3 langkah untuk mendapatkan surat keterangan Anda
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center hover:scale-105 transition-all duration-300 cursor-pointer group">
-                    <div class="relative inline-block mb-6">
-                        <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl">
-                            <span class="text-3xl font-bold text-white">1</span>
-                        </div>
-                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full animate-ping"></div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Daftar & Masuk</h3>
-                    <p class="text-gray-600">Buat akun atau masuk dengan NIK dan password Anda</p>
-                </div>
-
-                <div class="text-center hover:scale-105 transition-all duration-300 cursor-pointer group">
-                    <div class="relative inline-block mb-6">
-                        <div class="w-24 h-24 bg-gradient-to-br from-secondary to-primary rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl">
-                            <span class="text-3xl font-bold text-white">2</span>
-                        </div>
-                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full animate-ping"></div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-secondary transition-colors">Ajukan Surat</h3>
-                    <p class="text-gray-600">Pilih jenis surat dan isi formulir pengajuan online</p>
-                </div>
-
-                <div class="text-center hover:scale-105 transition-all duration-300 cursor-pointer group">
-                    <div class="relative inline-block mb-6">
-                        <div class="w-24 h-24 bg-gradient-to-br from-accent to-yellow-500 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl">
-                            <span class="text-3xl font-bold text-white">3</span>
-                        </div>
-                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-400 rounded-full animate-ping"></div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-accent transition-colors">Ambil Surat</h3>
-                    <p class="text-gray-600">Download surat yang sudah jadi atau ambil di kantor kelurahan</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="bg-gradient-to-r from-primary to-secondary text-white py-20 relative overflow-hidden">
-        <!-- Decorative elements -->
-        <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -ml-32 -mt-32"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full -mr-48 -mb-48"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                Siap Menggunakan Layanan Kami?
-            </h2>
-            <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                Daftar sekarang dan nikmati kemudahan layanan digital kelurahan
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="openRegisterModal()" class="bg-white text-primary px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 hover:scale-105 hover:shadow-2xl transition-all duration-300 inline-flex items-center justify-center active:scale-95">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-                    </svg>
-                    Daftar Sekarang
-                </button>
-                <button onclick="openLoginModal()" class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary hover:scale-105 hover:shadow-2xl transition-all duration-300 inline-flex items-center justify-center active:scale-95">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
-                    </svg>
-                    Sudah Punya Akun?
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer class="bg-primary text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
                 <div>
-                    <div class="flex items-center mb-4">
-                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
-                            </svg>
-                        </div>
-                        <span class="font-bold text-lg">E-Kelurahan</span>
-                    </div>
-                    <p class="text-gray-400">
-                        Layanan digital untuk memudahkan masyarakat dalam mengurus administrasi kelurahan.
+                    <h3 class="font-bold text-lg mb-4">E-Kelurahan Kota Malang</h3>
+                    <p class="text-green-100 text-sm">
+                        Sistem pelayanan administrasi kelurahan berbasis online untuk memudahkan masyarakat dalam mengurus berbagai keperluan surat keterangan.
                     </p>
                 </div>
-                
                 <div>
-                    <h3 class="font-semibold text-lg mb-4">Layanan</h3>
-                    <ul class="space-y-2 text-gray-400">
+                    <h3 class="font-bold text-lg mb-4">Layanan</h3>
+                    <ul class="space-y-2 text-green-100 text-sm">
                         <li>Surat Keterangan Tidak Mampu</li>
                         <li>Surat Keterangan Domisili</li>
                         <li>Surat Keterangan Usaha</li>
                     </ul>
                 </div>
-                
                 <div>
-                    <h3 class="font-semibold text-lg mb-4">Kontak</h3>
-                    <div class="space-y-2 text-gray-400">
-                        <p>Kelurahan</p>
-                        <p>Jl. MT Haryono No. 143, Dinoyo, Kec. Lowokwaru.</p>
-                        <p>Kota Malang, Jawa Timur</p>
+                    <h3 class="font-bold text-lg mb-4">Kontak</h3>
+                    <div class="space-y-2 text-green-100 text-sm">
+                        <p>Jl. MT Haryono No. 143, Dinoyo</p>
+                        <p>Kec. Lowokwaru, Kota Malang</p>
                         <p>Telp: (0341) 551818</p>
+                        <p>Email: kelurahan@malangkota.go.id</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2026 E-Kelurahan. Semua hak dilindungi.</p>
+            <div class="border-t border-green-700 pt-6 text-center text-green-100 text-sm">
+                <p>&copy; 2026 E-Kelurahan Kota Malang. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -114,7 +114,6 @@ class AdminPengajuanController extends Controller
 
         $berkasPendukung = $pengajuan->berkas_pendukung ?? [];
         if ($request->hasFile('berkas')) {
-            // Delete old files
             if ($pengajuan->berkas_pendukung) {
                 foreach ($pengajuan->berkas_pendukung as $oldFile) {
                     Storage::disk('public')->delete($oldFile);
@@ -142,7 +141,6 @@ class AdminPengajuanController extends Controller
             $updateData['tanggal_selesai'] = now();
             
             if ($request->hasFile('file_surat')) {
-                // Delete old file
                 if ($pengajuan->file_surat) {
                     Storage::disk('public')->delete($pengajuan->file_surat);
                 }
@@ -152,7 +150,6 @@ class AdminPengajuanController extends Controller
                 $updateData['file_surat'] = $path;
             }
         } elseif ($pengajuan->status == 'Selesai' && $request->status != 'Selesai') {
-            // Reset completion data if status changed from Selesai
             $updateData['tanggal_selesai'] = null;
         }
 
@@ -165,7 +162,6 @@ class AdminPengajuanController extends Controller
     {
         $pengajuan = PengajuanSurat::findOrFail($id);
         
-        // Delete associated files
         if ($pengajuan->berkas_pendukung) {
             foreach ($pengajuan->berkas_pendukung as $file) {
                 Storage::disk('public')->delete($file);

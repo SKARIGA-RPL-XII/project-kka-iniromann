@@ -31,7 +31,6 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        // Convert jenis_kelamin to single letter
         $jenisKelamin = null;
         if ($request->jenis_kelamin) {
             $jenisKelamin = $request->jenis_kelamin === 'Laki-laki' ? 'L' : 

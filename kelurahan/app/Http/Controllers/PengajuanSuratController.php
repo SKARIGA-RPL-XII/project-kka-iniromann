@@ -93,7 +93,6 @@ class PengajuanSuratController extends Controller
         $berkasPendukung = $pengajuan->berkas_pendukung ?? [];
 
         if ($request->hasFile('berkas')) {
-            // Delete old files
             if ($pengajuan->berkas_pendukung) {
                 foreach ($pengajuan->berkas_pendukung as $oldFile) {
                     Storage::disk('public')->delete($oldFile);
@@ -125,7 +124,6 @@ class PengajuanSuratController extends Controller
             ->where('status', 'Menunggu Verifikasi')
             ->firstOrFail();
 
-        // Delete associated files
         if ($pengajuan->berkas_pendukung) {
             foreach ($pengajuan->berkas_pendukung as $file) {
                 Storage::disk('public')->delete($file);
