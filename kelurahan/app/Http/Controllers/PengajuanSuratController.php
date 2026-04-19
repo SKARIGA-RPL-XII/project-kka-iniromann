@@ -27,7 +27,7 @@ class PengajuanSuratController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_surat' => 'required|in:SKTM,Domisili,SKU,Keterangan Usaha,Keterangan Tidak Mampu',
+            'jenis_surat' => 'required|in:SKTM,Domisili,SKU,Keterangan Usaha,Keterangan Tidak Mampu,Lainnya',
             'keperluan' => 'required|string',
             'berkas.*' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048'
         ]);
@@ -85,7 +85,7 @@ class PengajuanSuratController extends Controller
             ->firstOrFail();
 
         $request->validate([
-            'jenis_surat' => 'required|in:SKTM,Domisili,SKU,Keterangan Usaha,Keterangan Tidak Mampu',
+            'jenis_surat' => 'required|in:SKTM,Domisili,SKU,Keterangan Usaha,Keterangan Tidak Mampu,Lainnya',
             'keperluan' => 'required|string',
             'berkas.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048'
         ]);

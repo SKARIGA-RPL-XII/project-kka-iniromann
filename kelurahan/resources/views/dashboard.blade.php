@@ -3,88 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - E-Kelurahan</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideInRight {
+            from { 
+                transform: translateX(100vw); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateX(0); 
+                opacity: 1; 
+            }
+        }
+        .slide-enter {
+            animation: slideInRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+        .slide-enter-nojs {
+            opacity: 1 !important;
+        }
+    </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#16a085',
-                        'primary-dark': '#138d75',
-                        'secondary': '#27ae60',
-                        'accent': '#f39c12'
+                        'primary': '#16a34a',
+                        'primary-dark': '#15803d',
                     }
                 }
             }
         }
+        // Remove animation class after complete
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            if (body.classList.contains('slide-enter')) {
+                const animationDuration = 600; // ms
+                setTimeout(() => {
+                    body.classList.remove('slide-enter');
+                    body.classList.add('slide-enter-nojs');
+                }, animationDuration);
+            }
+        });
     </script>
 </head>
-<body class="bg-gray-50">
+
+@section('navbar')
+    <!-- Top bar -->
+    <div class="bg-primary text-white text-xs py-1.5 px-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <span>Kelurahan Kota Malang &mdash; Sistem Pelayanan Online</span>
+            <span id="current-time"></span>
+        </div>
+    </div>
+
     <!-- Navbar -->
-    <nav class="bg-gradient-to-r from-primary to-secondary shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <!-- Logo and Brand -->
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
-                            </svg>
-                        </div>
-                        <div class="text-white">
-                            <span class="font-bold text-lg">E-Kelurahan</span>
-                        </div>
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 text-sm leading-tight">E-Kelurahan</p>
+                        <p class="text-xs text-gray-400 leading-tight">Kota Malang</p>
                     </div>
                 </div>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="{{ route('dashboard') }}" class="nav-item text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium bg-white bg-opacity-20">
-                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                        </svg>
-                        Dashboard
-                    </a>
-                    <a href="{{ route('pengajuan.create') }}" class="nav-item text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-white hover:bg-opacity-10">
-                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        Ajukan Surat
-                    </a>
-                    <a href="{{ route('pengajuan.index') }}" class="nav-item text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-white hover:bg-opacity-10">
-                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        Riwayat
-                    </a>
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="{{ route('dashboard') }}" data-page="dashboard" class="px-3 py-2 text-sm font-medium text-primary border-b-2 border-primary page-link">Beranda</a>
+                    <a href="{{ route('pengajuan.create') }}" data-page="pengajuan-create" class="px-3 py-2 text-sm text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors page-link">Ajukan Surat</a>
+                    <a href="{{ route('pengajuan.index') }}" data-page="pengajuan" class="px-3 py-2 text-sm text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors page-link">Riwayat</a>
+                    <a href="{{ route('profil.show') }}" data-page="profil" class="px-3 py-2 text-sm text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors page-link">Profil Saya</a>
                 </div>
 
-                <!-- User Info and Time -->
-                <div class="flex items-center space-x-4">
-                    <div id="current-time" class="hidden sm:block text-sm text-green-100">
-                        {{ now()->format('d M Y, H:i') }} WIB
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <a href="{{ route('profil.show') }}" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
-                            <span class="text-primary font-semibold text-sm">{{ substr($penduduk->nama, 0, 1) }}</span>
-                        </a>
-                        <div class="hidden sm:block text-white">
-                            <p class="text-sm font-medium">{{ $penduduk->nama }}</p>
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-2">
+                        <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                            <span class="text-primary font-bold text-sm">{{ substr($penduduk->nama, 0, 1) }}</span>
                         </div>
+                        <span class="text-sm text-gray-700 font-medium">{{ explode(' ', $penduduk->nama)[0] }}</span>
                     </div>
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-white hover:text-red-200 p-2 rounded-md hover:bg-white hover:bg-opacity-10">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button type="submit" class="flex items-center gap-1.5 text-xs text-gray-500 hover:text-red-500 border border-gray-200 hover:border-red-200 px-3 py-1.5 rounded-md transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                             </svg>
+                            Keluar
                         </button>
                     </form>
-                    <!-- Mobile menu button -->
-                    <button id="mobile-menu-btn" class="md:hidden text-white hover:text-green-200 p-2">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button id="mobile-btn" class="md:hidden text-gray-500 p-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
@@ -92,220 +106,467 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden bg-primary-dark">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{{ route('dashboard') }}" class="nav-item block text-white hover:text-green-200 px-3 py-2 rounded-md text-base font-medium bg-white bg-opacity-20">
-                    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                    </svg>
-                    Dashboard
-                </a>
-                <a href="{{ route('pengajuan.create') }}" class="nav-item block text-white hover:text-green-200 px-3 py-2 rounded-md text-base font-medium hover:bg-white hover:bg-opacity-10">
-                    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Ajukan Surat
-                </a>
-                <a href="{{ route('pengajuan.index') }}" class="nav-item block text-white hover:text-green-200 px-3 py-2 rounded-md text-base font-medium hover:bg-white hover:bg-opacity-10">
-                    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    Riwayat Pengajuan
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-2 space-y-1">
+            <a href="{{ route('dashboard') }}" data-page="dashboard" class="block px-3 py-2 text-sm font-medium text-primary bg-primary/5 rounded page-link">Beranda</a>
+            <a href="{{ route('pengajuan.create') }}" data-page="pengajuan-create" class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded page-link">Ajukan Surat</a>
+            <a href="{{ route('pengajuan.index') }}" data-page="pengajuan" class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded page-link">Riwayat</a>
+            <a href="{{ route('profil.show') }}" data-page="profil" class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded page-link">Profil Saya</a>
+        </div>
+    </nav>
+@endsection
+
+@section('content')
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Welcome -->
+    <div class="bg-white border border-gray-200 rounded-xl p-5 mb-5 flex items-center justify-between">
+        <div>
+            <h1 class="text-base font-semibold text-gray-800">Selamat datang, <span class="text-primary">{{ $penduduk->nama }}</span></h1>
+            <p class="text-sm text-gray-500 mt-0.5">NIK: {{ $penduduk->nik }}</p>
+        </div>
+        <a href="{{ route('pengajuan.create') }}" class="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Ajukan Surat
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        <!-- Left: Stats + Recent -->
+        <div class="lg:col-span-2 space-y-5">
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="bg-white border border-gray-200 rounded-xl p-4 text-center">
+                    <p class="text-3xl font-bold text-gray-800">{{ $statistik['total'] }}</p>
+                    <p class="text-sm text-gray-400 mt-1">Total</p>
+                </div>
+                <div class="bg-white border border-yellow-200 rounded-xl p-4 text-center">
+                    <p class="text-3xl font-bold text-yellow-500">{{ $statistik['menunggu'] }}</p>
+                    <p class="text-sm text-yellow-500 mt-1">Menunggu</p>
+                </div>
+                <div class="bg-white border border-blue-200 rounded-xl p-4 text-center">
+                    <p class="text-3xl font-bold text-blue-500">{{ $statistik['diproses'] }}</p>
+                    <p class="text-sm text-blue-500 mt-1">Diproses</p>
+                </div>
+                <div class="bg-white border border-green-200 rounded-xl p-4 text-center">
+                    <p class="text-3xl font-bold text-green-600">{{ $statistik['selesai'] }}</p>
+                    <p class="text-sm text-green-600 mt-1">Selesai</p>
+                </div>
+            </div>
+
+            <!-- Recent pengajuan -->
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+                <div class="flex items-center justify-between px-5 py-3.5 border-b border-gray-100">
+                    <h2 class="text-sm font-semibold text-gray-800">Pengajuan Terbaru</h2>
+                    <a href="{{ route('pengajuan.index') }}" class="text-xs text-primary hover:underline">Lihat semua →</a>
+                </div>
+
+                @if($pengajuanTerbaru->count() > 0)
+                    <div class="divide-y divide-gray-50">
+                        @foreach($pengajuanTerbaru as $p)
+                        <div class="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 transition-colors">
+                            <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0
+                                @if($p->status == 'Selesai') bg-green-100
+                                @elseif($p->status == 'Diproses') bg-blue-100
+                                @elseif($p->status == 'Ditolak') bg-red-100
+                                @else bg-yellow-100 @endif">
+                                <svg class="w-4 h-4
+                                    @if($p->status == 'Selesai') text-green-600
+                                    @elseif($p->status == 'Diproses') text-blue-600
+                                    @elseif($p->status == 'Ditolak') text-red-500
+                                    @else text-yellow-600 @endif"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-base font-medium text-gray-800 truncate">{{ $p->jenis_surat }}</p>
+                                <p class="text-sm text-gray-400">{{ $p->nomor_pengajuan }} · {{ $p->created_at->format('d M Y') }}</p>
+                            </div>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <span class="text-xs px-2 py-0.5 rounded font-medium
+                                    @if($p->status == 'Selesai') bg-green-100 text-green-700
+                                    @elseif($p->status == 'Diproses') bg-blue-100 text-blue-700
+                                    @elseif($p->status == 'Ditolak') bg-red-100 text-red-600
+                                    @else bg-yellow-100 text-yellow-700 @endif">
+                                    {{ $p->status }}
+                                </span>
+                                <a href="{{ route('pengajuan.show', $p->id) }}" class="text-gray-300 hover:text-primary">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center py-10">
+                        <svg class="w-10 h-10 text-gray-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <p class="text-sm text-gray-400 mb-3">Belum ada pengajuan surat</p>
+                        <a href="{{ route('pengajuan.create') }}" class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-sm px-4 py-2 rounded-lg transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Ajukan Sekarang
+                        </a>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="space-y-4">
+
+            <!-- Profil singkat -->
+            <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-gray-700 mb-4">Data Saya</h3>
+                <div class="space-y-3">
+                    <div>
+                        <p class="text-xs text-gray-400">Nama Lengkap</p>
+                        <p class="text-base font-medium text-gray-800">{{ $penduduk->nama }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400">NIK</p>
+                        <p class="text-base font-medium text-gray-800">{{ $penduduk->nik }}</p>
+                    </div>
+                    @if($penduduk->alamat)
+                    <div>
+                        <p class="text-xs text-gray-400">Alamat</p>
+                        <p class="text-base font-medium text-gray-800">{{ $penduduk->alamat }}</p>
+                    </div>
+                    @endif
+                </div>
+                <a href="{{ route('profil.show') }}" class="mt-4 block text-center text-xs text-primary hover:underline border border-primary/30 rounded-lg py-1.5 hover:bg-primary/5 transition-colors">
+                    Lihat & Edit Profil
                 </a>
             </div>
+
+            <!-- Layanan tersedia -->
+            <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-gray-700 mb-3">Layanan Tersedia</h3>
+                <div class="space-y-2">
+                    @foreach(['SKTM', 'Domisili', 'SKU', 'Lainnya'] as $layanan)
+                    <a href="{{ route('pengajuan.create') }}" class="flex items-center gap-2.5 p-3 rounded-lg hover:bg-gray-50 transition-colors group">
+                        <div class="w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-base text-gray-700 group-hover:text-primary transition-colors">{{ $layanan }}</span>
+                        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-primary ml-auto transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Info jam layanan -->
+            <div class="bg-primary/5 border border-primary/20 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-primary mb-3">Jam Pelayanan</h3>
+                <div class="space-y-2 text-sm text-gray-600">
+                    <div class="flex justify-between">
+                        <span>Senin – Jumat</span>
+                        <span class="font-medium">08.00 – 15.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Sabtu – Minggu</span>
+                        <span class="font-medium text-red-500">Tutup</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-400 mt-3">Pengajuan online tetap bisa dilakukan 24 jam.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endsection
+
+<script>
+    document.getElementById('mobile-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    function updateClock() {
+        const now = new Date();
+        const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+        const d = now.getDate().toString().padStart(2,'0');
+        const m = months[now.getMonth()];
+        const y = now.getFullYear();
+        const h = now.getHours().toString().padStart(2,'0');
+        const min = now.getMinutes().toString().padStart(2,'0');
+        const s = now.getSeconds().toString().padStart(2,'0');
+        const el = document.getElementById('current-time');
+        if (el) el.textContent = `${d} ${m} ${y}, ${h}:${min}:${s} WIB`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
+<body class="@if(session('just_logged_in'))slide-enter @endif bg-gray-50 min-h-screen">
+
+    <!-- Top bar -->
+    <div class="bg-primary text-white text-xs py-1.5 px-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <span>Kelurahan Kota Malang &mdash; Sistem Pelayanan Online</span>
+            <span id="current-time"></span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 text-sm leading-tight">E-Kelurahan</p>
+                        <p class="text-xs text-gray-400 leading-tight">Kota Malang</p>
+                    </div>
+                </div>
+
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="{{ route('dashboard') }}" class="px-3 py-2 text-sm font-medium text-primary border-b-2 border-primary">Beranda</a>
+                    <a href="{{ route('pengajuan.create') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Ajukan Surat</a>
+                    <a href="{{ route('pengajuan.index') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Riwayat</a>
+                    <a href="{{ route('profil.show') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition-colors">Profil Saya</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-2">
+                        <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                            <span class="text-primary font-bold text-sm">{{ substr($penduduk->nama, 0, 1) }}</span>
+                        </div>
+                        <span class="text-sm text-gray-700 font-medium">{{ explode(' ', $penduduk->nama)[0] }}</span>
+                    </div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="flex items-center gap-1.5 text-xs text-gray-500 hover:text-red-500 border border-gray-200 hover:border-red-200 px-3 py-1.5 rounded-md transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                            Keluar
+                        </button>
+                    </form>
+                    <button id="mobile-btn" class="md:hidden text-gray-500 p-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-2 space-y-1">
+            <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-sm font-medium text-primary bg-primary/5 rounded">Beranda</a>
+            <a href="{{ route('pengajuan.create') }}" class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">Ajukan Surat</a>
+            <a href="{{ route('pengajuan.index') }}" class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">Riwayat</a>
+            <a href="{{ route('profil.show') }}" class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">Profil Saya</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <!-- Welcome Banner -->
-        <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-lg p-8 mb-8 text-white">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold mb-2">Selamat Datang, {{ $penduduk->nama }}! 👋</h1>
-                    <p class="text-green-100 text-lg">Kelola pengajuan surat Anda dengan mudah dan cepat</p>
-                </div>
-                <div class="hidden lg:block">
-                    <svg class="w-32 h-32 text-white opacity-20" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
-                    </svg>
-                </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+        <!-- Welcome -->
+        <div class="bg-white border border-gray-200 rounded-xl p-5 mb-5 flex items-center justify-between">
+            <div>
+                <h1 class="text-base font-semibold text-gray-800">Selamat datang, <span class="text-primary">{{ $penduduk->nama }}</span></h1>
+                <p class="text-sm text-gray-500 mt-0.5">NIK: {{ $penduduk->nik }}</p>
             </div>
+            <a href="{{ route('pengajuan.create') }}" class="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Ajukan Surat
+            </a>
         </div>
 
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
-            <div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl shadow-lg p-6 text-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="p-3 rounded-xl bg-white bg-opacity-20">
-                        <svg class="w-8 h-8 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                    </div>
-                </div>
-                <p class="text-sm font-medium text-green-100 mb-1">Total Pengajuan</p>
-                <p class="text-4xl font-bold">{{ $statistik['total'] }}</p>
-            </div>
-            
-            <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl shadow-lg p-6 text-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="p-3 rounded-xl bg-white bg-opacity-20">
-                        <svg class="w-8 h-8 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                </div>
-                <p class="text-sm font-medium text-yellow-100 mb-1">Menunggu Verifikasi</p>
-                <p class="text-4xl font-bold">{{ $statistik['menunggu'] }}</p>
-            </div>
-            
-            <div class="bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl shadow-lg p-6 text-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="p-3 rounded-xl bg-white bg-opacity-20">
-                        <svg class="w-8 h-8 text-white animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                        </svg>
-                    </div>
-                </div>
-                <p class="text-sm font-medium text-orange-100 mb-1">Sedang Diproses</p>
-                <p class="text-4xl font-bold">{{ $statistik['diproses'] }}</p>
-            </div>
-            
-            <div class="bg-gradient-to-br from-secondary to-green-600 rounded-2xl shadow-lg p-6 text-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="p-3 rounded-xl bg-white bg-opacity-20">
-                        <svg class="w-8 h-8 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                </div>
-                <p class="text-sm font-medium text-green-100 mb-1">Selesai</p>
-                <p class="text-4xl font-bold">{{ $statistik['selesai'] }}</p>
-            </div>
-        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
-            <!-- Recent Applications -->
-            <div id="recent-applications" class="bg-white rounded-xl shadow-sm border border-gray-100">
-                <div class="p-6 border-b border-gray-100">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold text-gray-900">Pengajuan Terbaru</h3>
-                        <a href="{{ route('pengajuan.index') }}" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Lihat Semua
-                        </a>
+            <!-- Left: Stats + Recent -->
+            <div class="lg:col-span-2 space-y-5">
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-gray-800">{{ $statistik['total'] }}</p>
+                        <p class="text-sm text-gray-400 mt-1">Total</p>
+                    </div>
+                    <div class="bg-white border border-yellow-200 rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-yellow-500">{{ $statistik['menunggu'] }}</p>
+                        <p class="text-sm text-yellow-500 mt-1">Menunggu</p>
+                    </div>
+                    <div class="bg-white border border-blue-200 rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-blue-500">{{ $statistik['diproses'] }}</p>
+                        <p class="text-sm text-blue-500 mt-1">Diproses</p>
+                    </div>
+                    <div class="bg-white border border-green-200 rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-green-600">{{ $statistik['selesai'] }}</p>
+                        <p class="text-sm text-green-600 mt-1">Selesai</p>
                     </div>
                 </div>
-                <div class="p-6">
+
+                <!-- Recent pengajuan -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-3.5 border-b border-gray-100">
+                        <h2 class="text-sm font-semibold text-gray-800">Pengajuan Terbaru</h2>
+                        <a href="{{ route('pengajuan.index') }}" class="text-xs text-primary hover:underline">Lihat semua →</a>
+                    </div>
+
                     @if($pengajuanTerbaru->count() > 0)
-                        <div class="space-y-3">
-                            @foreach($pengajuanTerbaru as $pengajuan)
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-200 border border-gray-100 hover:border-primary hover:shadow-sm group">
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <h4 class="font-semibold text-gray-900 group-hover:text-primary transition-colors">{{ $pengajuan->jenis_surat }}</h4>
-                                            <span class="px-3 py-1 text-xs rounded-full font-medium
-                                                @if($pengajuan->status == 'Selesai') bg-green-100 text-green-800
-                                                @elseif($pengajuan->status == 'Diproses') bg-orange-100 text-orange-800
-                                                @elseif($pengajuan->status == 'Ditolak') bg-red-100 text-red-800
-                                                @else bg-yellow-100 text-yellow-800 @endif">
-                                                {{ $pengajuan->status }}
-                                            </span>
-                                        </div>
-                                        <div class="flex items-center text-sm text-gray-600 space-x-4">
-                                            <span class="flex items-center">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
-                                                </svg>
-                                                {{ $pengajuan->nomor_pengajuan }}
-                                            </span>
-                                            <span class="flex items-center">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                                </svg>
-                                                {{ $pengajuan->created_at->format('d M Y H:i') }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('pengajuan.show', $pengajuan->id) }}" class="ml-4 text-primary hover:text-primary-dark">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="divide-y divide-gray-50">
+                            @foreach($pengajuanTerbaru as $p)
+                            <div class="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 transition-colors">
+                                <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0
+                                    @if($p->status == 'Selesai') bg-green-100
+                                    @elseif($p->status == 'Diproses') bg-blue-100
+                                    @elseif($p->status == 'Ditolak') bg-red-100
+                                    @else bg-yellow-100 @endif">
+                                    <svg class="w-4 h-4
+                                        @if($p->status == 'Selesai') text-green-600
+                                        @elseif($p->status == 'Diproses') text-blue-600
+                                        @elseif($p->status == 'Ditolak') text-red-500
+                                        @else text-yellow-600 @endif"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-base font-medium text-gray-800 truncate">{{ $p->jenis_surat }}</p>
+                                    <p class="text-sm text-gray-400">{{ $p->nomor_pengajuan }} &middot; {{ $p->created_at->format('d M Y') }}</p>
+                                </div>
+                                <div class="flex items-center gap-2 flex-shrink-0">
+                                    <span class="text-xs px-2 py-0.5 rounded font-medium
+                                        @if($p->status == 'Selesai') bg-green-100 text-green-700
+                                        @elseif($p->status == 'Diproses') bg-blue-100 text-blue-700
+                                        @elseif($p->status == 'Ditolak') bg-red-100 text-red-600
+                                        @else bg-yellow-100 text-yellow-700 @endif">
+                                        {{ $p->status }}
+                                    </span>
+                                    <a href="{{ route('pengajuan.show', $p->id) }}" class="text-gray-300 hover:text-primary">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                         </svg>
                                     </a>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     @else
-                        <div class="text-center py-12">
-                            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        <div class="text-center py-10">
+                            <svg class="w-10 h-10 text-gray-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada pengajuan</h3>
-                            <p class="mt-1 text-sm text-gray-500">Mulai dengan mengajukan surat pertama Anda.</p>
-                            <div class="mt-6">
-                                <a href="{{ route('pengajuan.create') }}" class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary-dark transition-all duration-300 hover:scale-105">
-                                    <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                    </svg>
-                                    Ajukan Surat Baru
-                                </a>
-                            </div>
+                            <p class="text-sm text-gray-400 mb-3">Belum ada pengajuan surat</p>
+                            <a href="{{ route('pengajuan.create') }}" class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-sm px-4 py-2 rounded-lg transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                Ajukan Sekarang
+                            </a>
                         </div>
                     @endif
                 </div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="space-y-4">
+
+                <!-- Profil singkat -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5">
+                    <h3 class="text-base font-semibold text-gray-700 mb-4">Data Saya</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-xs text-gray-400">Nama Lengkap</p>
+                            <p class="text-base font-medium text-gray-800">{{ $penduduk->nama }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400">NIK</p>
+                            <p class="text-base font-medium text-gray-800">{{ $penduduk->nik }}</p>
+                        </div>
+                        @if($penduduk->alamat)
+                        <div>
+                            <p class="text-xs text-gray-400">Alamat</p>
+                            <p class="text-base font-medium text-gray-800">{{ $penduduk->alamat }}</p>
+                        </div>
+                        @endif
+                    </div>
+                    <a href="{{ route('profil.show') }}" class="mt-4 block text-center text-xs text-primary hover:underline border border-primary/30 rounded-lg py-1.5 hover:bg-primary/5 transition-colors">
+                        Lihat & Edit Profil
+                    </a>
+                </div>
+
+                <!-- Layanan tersedia -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5">
+                    <h3 class="text-base font-semibold text-gray-700 mb-3">Layanan Tersedia</h3>
+                    <div class="space-y-2">
+                        @foreach(['SKTM', 'Domisili', 'SKU', 'Lainnya'] as $layanan)
+                        <a href="{{ route('pengajuan.create') }}" class="flex items-center gap-2.5 p-3 rounded-lg hover:bg-gray-50 transition-colors group">
+                            <div class="w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-base text-gray-700 group-hover:text-primary transition-colors">{{ $layanan }}</span>
+                            <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-primary ml-auto transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Info jam layanan -->
+                <div class="bg-primary/5 border border-primary/20 rounded-xl p-5">
+                    <h3 class="text-base font-semibold text-primary mb-3">Jam Pelayanan</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Senin – Jumat</span>
+                            <span class="font-medium">08.00 – 15.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Sabtu – Minggu</span>
+                            <span class="font-medium text-red-500">Tutup</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-3">Pengajuan online tetap bisa dilakukan 24 jam.</p>
+                </div>
+
             </div>
         </div>
     </div>
 
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        document.getElementById('mobile-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        function setActiveNav(activeId) {
-            // Remove active class from all nav items
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('text-primary', 'bg-green-50', 'border-l-4', 'border-primary');
-                item.classList.add('text-gray-700');
-            });
-            
-            // Add active class to selected nav item
-            const activeItem = document.getElementById(activeId);
-            if (activeItem) {
-                activeItem.classList.remove('text-gray-700');
-                activeItem.classList.add('text-primary', 'bg-green-50', 'border-l-4', 'border-primary');
-            }
-        }
-
-        function showCreateForm() {
-            window.location.href = '{{ route("pengajuan.create") }}';
-        }
-
-        function hideCreateForm() {
-            document.getElementById('create-form').classList.add('hidden');
-            document.getElementById('recent-applications').classList.remove('hidden');
-            setActiveNav('nav-dashboard');
-        }
-
-        // Real-time clock functionality
         function updateClock() {
             const now = new Date();
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-            
-            const day = now.getDate().toString().padStart(2, '0');
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            
-            const timeString = `${day} ${month} ${year}, ${hours}:${minutes}:${seconds} WIB`;
-            document.getElementById('current-time').textContent = timeString;
+            const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+            const d = now.getDate().toString().padStart(2,'0');
+            const m = months[now.getMonth()];
+            const y = now.getFullYear();
+            const h = now.getHours().toString().padStart(2,'0');
+            const min = now.getMinutes().toString().padStart(2,'0');
+            const s = now.getSeconds().toString().padStart(2,'0');
+            const el = document.getElementById('current-time');
+            if (el) el.textContent = `${d} ${m} ${y}, ${h}:${min}:${s} WIB`;
         }
-
-        // Update clock immediately and then every second
         updateClock();
         setInterval(updateClock, 1000);
     </script>

@@ -21,7 +21,18 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        if (!Penduduk::where('nik', $request->nik)->exists()) {
+            if ($request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'Anda belum mendaftarkan akun anda, silahkan daftar'], 422);
+            }
+            return back()->withErrors([
+                'nik' => 'Anda Belum Mendaftarkan Akun Anda, Silahkan Daftar.',
+            ]);
+        }
+
         if (Auth::guard('penduduk')->attempt($request->only('nik', 'password'), $request->filled('remember'))) {
+            $request->session()->flash('just_logged_in', true);
+
             if ($request->expectsJson()) {
                 return response()->json(['success' => true, 'redirect' => '/dashboard']);
             }
@@ -31,7 +42,7 @@ class LoginController extends Controller
         if ($request->expectsJson()) {
             return response()->json(['success' => false, 'message' => 'NIK atau password salah.'], 422);
         }
-        
+
         return back()->withErrors([
             'nik' => 'NIK atau password salah.',
         ]);

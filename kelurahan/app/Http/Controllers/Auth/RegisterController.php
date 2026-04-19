@@ -44,13 +44,13 @@ class RegisterController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir ?? now(),
             'jenis_kelamin' => $jenisKelamin ?? 'L',
             'alamat' => $request->alamat ?? '-',
-            'rt' => $request->rt ?? '000',
-            'rw' => $request->rw ?? '000',
-            'kelurahan' => 'Kelurahan Sample',
-            'kecamatan' => 'Kecamatan Sample',
-            'kabupaten' => 'Kabupaten Sample',
-            'provinsi' => 'Provinsi Sample',
-            'agama' => $request->agama ?? 'Islam',
+            'rt' => $request->rt ?? '0',
+            'rw' => $request->rw ?? '0',
+            'kelurahan' => $request->kelurahan ?? 'Kelurahan',
+            'kecamatan' => $request->kecamatan ?? 'Kecamatan',
+            'kabupaten' => $request->kabupaten ?? 'Kabupaten',
+            'provinsi' => $request->provinsi ?? 'Provinsi',
+            'agama' => $request->agama ?? 'Pilih',
             'status_perkawinan' => $request->status_perkawinan ?? 'Belum Kawin',
             'pekerjaan' => $request->pekerjaan ?? 'Belum Bekerja',
             'kewarganegaraan' => 'WNI',
@@ -64,6 +64,6 @@ class RegisterController extends Controller
             return response()->json(['success' => true, 'message' => 'Registrasi berhasil! Silakan login.']);
         }
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+        return redirect('/')->with('register_success', true);
     }
 }
